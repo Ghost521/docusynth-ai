@@ -1,0 +1,200 @@
+{
+  "name": "docusynth-ai",
+  "displayName": "DocuSynth AI",
+  "description": "Access DocuSynth AI documentation context directly in VS Code",
+  "version": "0.1.0",
+  "publisher": "docusynth",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "documentation",
+    "ai",
+    "context",
+    "llm"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "docusynth",
+          "title": "DocuSynth AI",
+          "icon": "$(book)"
+        }
+      ]
+    },
+    "views": {
+      "docusynth": [
+        {
+          "id": "docusynthDocuments",
+          "name": "Documents",
+          "contextualTitle": "DocuSynth Documents"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "docusynth.refresh",
+        "title": "Refresh Documents",
+        "category": "DocuSynth",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "docusynth.insertContext",
+        "title": "Insert Document Context",
+        "category": "DocuSynth"
+      },
+      {
+        "command": "docusynth.generateFromSelection",
+        "title": "Generate Documentation from Selection",
+        "category": "DocuSynth"
+      },
+      {
+        "command": "docusynth.searchDocuments",
+        "title": "Search Documents",
+        "category": "DocuSynth",
+        "icon": "$(search)"
+      },
+      {
+        "command": "docusynth.openDocument",
+        "title": "Open Document",
+        "category": "DocuSynth"
+      },
+      {
+        "command": "docusynth.copyDocumentContent",
+        "title": "Copy Document Content",
+        "category": "DocuSynth"
+      },
+      {
+        "command": "docusynth.configureApiKey",
+        "title": "Configure API Key",
+        "category": "DocuSynth"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "docusynth.refresh",
+          "when": "view == docusynthDocuments",
+          "group": "navigation"
+        },
+        {
+          "command": "docusynth.searchDocuments",
+          "when": "view == docusynthDocuments",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "docusynth.insertContext",
+          "when": "view == docusynthDocuments && viewItem == document",
+          "group": "inline"
+        },
+        {
+          "command": "docusynth.copyDocumentContent",
+          "when": "view == docusynthDocuments && viewItem == document"
+        },
+        {
+          "command": "docusynth.openDocument",
+          "when": "view == docusynthDocuments && viewItem == document"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "docusynth.generateFromSelection",
+          "when": "editorHasSelection",
+          "group": "docusynth"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "docusynth.refresh",
+          "when": "true"
+        },
+        {
+          "command": "docusynth.searchDocuments",
+          "when": "true"
+        },
+        {
+          "command": "docusynth.configureApiKey",
+          "when": "true"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "DocuSynth AI",
+      "properties": {
+        "docusynth.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "The URL of the DocuSynth AI server"
+        },
+        "docusynth.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for authentication with DocuSynth AI server"
+        },
+        "docusynth.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically refresh documents on startup"
+        },
+        "docusynth.insertFormat": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "plain",
+            "xml"
+          ],
+          "default": "markdown",
+          "description": "Format for inserting document content"
+        },
+        "docusynth.maxSearchResults": {
+          "type": "number",
+          "default": 20,
+          "minimum": 5,
+          "maximum": 100,
+          "description": "Maximum number of search results to display"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "docusynth.searchDocuments",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d"
+      },
+      {
+        "command": "docusynth.insertContext",
+        "key": "ctrl+shift+i",
+        "mac": "cmd+shift+i"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}

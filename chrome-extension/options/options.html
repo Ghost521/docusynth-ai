@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocuSynth AI - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="header-title">
+          <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <line x1="10" y1="9" x2="8" y2="9"/>
+          </svg>
+          <div>
+            <h1>DocuSynth AI</h1>
+            <span class="subtitle">Extension Settings</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div class="container">
+        <!-- Connection Status Card -->
+        <section class="card">
+          <div class="card-header">
+            <h2>Connection Status</h2>
+          </div>
+          <div class="card-body">
+            <div id="connection-status" class="connection-status">
+              <div class="status-icon checking">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                </svg>
+              </div>
+              <div class="status-info">
+                <span class="status-label">Checking connection...</span>
+                <span class="status-detail" id="status-detail"></span>
+              </div>
+            </div>
+            <button id="test-connection-btn" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              Test Connection
+            </button>
+          </div>
+        </section>
+
+        <!-- API Settings Card -->
+        <section class="card">
+          <div class="card-header">
+            <h2>API Configuration</h2>
+            <span class="card-badge">Required</span>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="api-key">API Key</label>
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  id="api-key"
+                  placeholder="Enter your DocuSynth AI API key"
+                  autocomplete="off"
+                />
+                <button type="button" id="toggle-api-key" class="input-icon-btn" title="Show/Hide">
+                  <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  <svg id="eye-off-icon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  </svg>
+                </button>
+              </div>
+              <span class="form-hint">Your API key is stored securely using Chrome's sync storage</span>
+            </div>
+
+            <div class="form-group">
+              <label for="server-url">Server URL</label>
+              <input
+                type="url"
+                id="server-url"
+                placeholder="http://localhost:3000"
+                value="http://localhost:3000"
+              />
+              <span class="form-hint">The URL of your DocuSynth AI server</span>
+            </div>
+
+            <div class="form-actions">
+              <button id="save-btn" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                  <polyline points="17 21 17 13 7 13 7 21"/>
+                  <polyline points="7 3 7 8 15 8"/>
+                </svg>
+                Save Settings
+              </button>
+              <button id="reset-btn" class="btn btn-ghost">
+                Reset to Defaults
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advanced Settings Card -->
+        <section class="card">
+          <div class="card-header">
+            <h2>Advanced Settings</h2>
+          </div>
+          <div class="card-body">
+            <div class="toggle-group">
+              <div class="toggle-info">
+                <span class="toggle-label">Auto-capture on context menu</span>
+                <span class="toggle-hint">Automatically add pages to sources when using context menu</span>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="auto-capture" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-group">
+              <div class="toggle-info">
+                <span class="toggle-label">Show notifications</span>
+                <span class="toggle-hint">Display browser notifications for capture and generation events</span>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="show-notifications" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="toggle-group">
+              <div class="toggle-info">
+                <span class="toggle-label">Badge counter</span>
+                <span class="toggle-hint">Show number of captured sources on extension icon</span>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="show-badge" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Keyboard Shortcuts Card -->
+        <section class="card">
+          <div class="card-header">
+            <h2>Keyboard Shortcuts</h2>
+          </div>
+          <div class="card-body">
+            <div class="shortcuts-list">
+              <div class="shortcut-item">
+                <div class="shortcut-keys">
+                  <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
+                </div>
+                <span class="shortcut-desc">Capture current page</span>
+              </div>
+              <div class="shortcut-item">
+                <div class="shortcut-keys">
+                  <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>
+                </div>
+                <span class="shortcut-desc">Capture selected text</span>
+              </div>
+            </div>
+            <p class="shortcuts-note">
+              Note: You can customize Chrome extension shortcuts at
+              <code>chrome://extensions/shortcuts</code>
+            </p>
+          </div>
+        </section>
+
+        <!-- Data Management Card -->
+        <section class="card">
+          <div class="card-header">
+            <h2>Data Management</h2>
+          </div>
+          <div class="card-body">
+            <div class="data-actions">
+              <button id="export-data-btn" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Export Data
+              </button>
+              <button id="clear-data-btn" class="btn btn-danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+                Clear All Data
+              </button>
+            </div>
+            <p class="data-note">
+              Clearing data will remove all captured sources and local settings. Your API key will be preserved.
+            </p>
+          </div>
+        </section>
+
+        <!-- About Card -->
+        <section class="card">
+          <div class="card-header">
+            <h2>About</h2>
+          </div>
+          <div class="card-body">
+            <div class="about-info">
+              <div class="about-row">
+                <span>Version</span>
+                <span>1.0.0</span>
+              </div>
+              <div class="about-row">
+                <span>Website</span>
+                <a href="#" id="website-link">DocuSynth AI</a>
+              </div>
+              <div class="about-row">
+                <span>Documentation</span>
+                <a href="#" id="docs-link">View Docs</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "display_information": {
+    "name": "DocuSynth",
+    "description": "Generate token-optimized documentation context for LLMs",
+    "background_color": "#6366f1",
+    "long_description": "DocuSynth AI helps you generate comprehensive documentation optimized for AI consumption. Search existing docs, generate new documentation from topics, GitHub repos, or URLs, and share documentation directly in Slack channels.\r\n\r\nCommands:\r\n- /docusynth search <query> - Search your documents\r\n- /docusynth generate <topic> - Generate new documentation\r\n- /docusynth list - List recent documents\r\n- /docusynth share <doc-id> - Share a document\r\n- /docusynth help - Show available commands"
+  },
+  "features": {
+    "app_home": {
+      "home_tab_enabled": false,
+      "messages_tab_enabled": true,
+      "messages_tab_read_only_enabled": false
+    },
+    "bot_user": {
+      "display_name": "DocuSynth",
+      "always_online": true
+    },
+    "slash_commands": [
+      {
+        "command": "/docusynth",
+        "url": "https://YOUR_CONVEX_URL/api/slack/commands",
+        "description": "Access DocuSynth documentation tools",
+        "usage_hint": "[search|generate|list|share|help] [args]",
+        "should_escape": false
+      }
+    ]
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "app_mentions:read",
+        "chat:write",
+        "chat:write.customize",
+        "commands",
+        "im:history",
+        "im:read",
+        "im:write",
+        "users:read"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "request_url": "https://YOUR_CONVEX_URL/api/slack/events",
+      "bot_events": [
+        "app_mention",
+        "message.im"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": true,
+      "request_url": "https://YOUR_CONVEX_URL/api/slack/commands"
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": false
+  }
+}

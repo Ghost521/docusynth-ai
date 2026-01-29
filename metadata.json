@@ -1,0 +1,5 @@
+{
+  "name": "DocuSynth AI",
+  "description": "Generate up-to-date, token-optimized documentation context for LLMs (Cursor, Claude, Gemini, Ollama, Tabnine) using AI-powered search and synthesis.",
+  "requestFramePermissions": []
+}

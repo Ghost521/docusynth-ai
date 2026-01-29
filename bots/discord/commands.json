@@ -1,0 +1,63 @@
+[
+  {
+    "name": "docusynth",
+    "type": 1,
+    "description": "DocuSynth documentation tools - generate and manage AI-optimized docs",
+    "options": [
+      {
+        "name": "help",
+        "type": 1,
+        "description": "Show available commands and usage information"
+      },
+      {
+        "name": "link",
+        "type": 1,
+        "description": "Link your Discord account to DocuSynth"
+      },
+      {
+        "name": "search",
+        "type": 1,
+        "description": "Search your documents by keyword",
+        "options": [
+          {
+            "name": "query",
+            "type": 3,
+            "description": "Search query (e.g., 'react hooks' or 'authentication')",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "generate",
+        "type": 1,
+        "description": "Generate new documentation for a topic",
+        "options": [
+          {
+            "name": "topic",
+            "type": 3,
+            "description": "Topic to generate docs for (e.g., 'Next.js 14 app router')",
+            "required": true
+          }
+        ]
+      },
+      {
+        "name": "list",
+        "type": 1,
+        "description": "List your recent documents"
+      },
+      {
+        "name": "share",
+        "type": 1,
+        "description": "Share a document in this channel",
+        "options": [
+          {
+            "name": "document-id",
+            "type": 3,
+            "description": "The document ID to share",
+            "required": true
+          }
+        ]
+      }
+    ]
+  }
+]
