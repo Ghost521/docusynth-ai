@@ -77,7 +77,7 @@ const VersionHistoryModal: React.FC<VersionHistoryModalProps> = ({ isOpen, onClo
                         {new Date(version.createdAt).toLocaleString()}
                       </span>
                     </div>
-                    <p className="text-xs text-secondary line-clamp-2 mb-4 opacity-70 font-mono bg-black/5 dark:bg-black/20 p-2 rounded">
+                    <p className="text-xs text-secondary line-clamp-2 mb-4 opacity-70 font-mono bg-surface-hover p-2 rounded">
                       {version.content.substring(0, 150).replace(/\n/g, ' ')}...
                     </p>
                     <button 

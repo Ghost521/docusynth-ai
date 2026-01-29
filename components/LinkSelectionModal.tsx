@@ -38,8 +38,9 @@ const LinkSelectionModal: React.FC<LinkSelectionModalProps> = ({ links, onConfir
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-      <div className="bg-surface border border-border rounded-xl w-full max-w-2xl flex flex-col max-h-[85vh] shadow-2xl animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm animate-fadeIn" onClick={onClose} />
+      <div className="relative bg-surface border border-border rounded-2xl w-full max-w-2xl flex flex-col max-h-[85vh] shadow-2xl animate-scaleIn">
         
         <div className="p-6 border-b border-border">
           <h2 className="text-xl font-bold text-main flex items-center gap-2">

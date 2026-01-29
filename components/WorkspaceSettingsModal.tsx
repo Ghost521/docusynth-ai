@@ -47,8 +47,9 @@ export default function WorkspaceSettingsModal({
 
   if (!workspace) {
     return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div className="bg-background rounded-xl p-8">
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm animate-fadeIn" onClick={onClose} />
+        <div className="relative bg-background rounded-xl p-8">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
         </div>
       </div>
@@ -155,8 +156,9 @@ export default function WorkspaceSettingsModal({
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-background rounded-xl border border-border w-full max-w-3xl max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-sm animate-fadeIn" onClick={onClose} />
+      <div className="relative bg-surface rounded-2xl border border-border w-full max-w-3xl max-h-[90vh] flex flex-col animate-scaleIn">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <div className="flex items-center gap-3">
@@ -449,7 +451,7 @@ export default function WorkspaceSettingsModal({
         {/* Delete Confirmation Dialog */}
         {showDeleteConfirm && (
           <div className="absolute inset-0 bg-black/70 flex items-center justify-center rounded-xl">
-            <div className="bg-gray-800 p-6 rounded-xl border border-border max-w-md">
+            <div className="bg-surface-elevated p-6 rounded-xl border border-border max-w-md">
               <h3 className="text-lg font-semibold text-white mb-2">Delete Workspace?</h3>
               <p className="text-gray-400 text-sm mb-4">
                 This will permanently delete the workspace and remove all members.
