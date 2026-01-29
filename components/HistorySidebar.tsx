@@ -325,16 +325,16 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
         <div className="flex-1 overflow-y-auto custom-scrollbar">
           {/* Main Navigation */}
           <div className="p-4 space-y-1">
-             <button 
+             <button
               onClick={onGoHome}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-main hover:bg-primary/10 hover:text-primary transition-all group active:scale-[0.97]"
+              className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold bg-primary text-white hover:bg-primary-hover transition-all group active:scale-[0.97] shadow-sm"
             >
               <Icons.Plus className="w-4 h-4 group-hover:rotate-90 transition-transform" />
               New Synthesis
             </button>
           </div>
 
-          <div className="border-t border-border mx-4 my-2 opacity-50" />
+          <div className="border-t border-border mx-4 my-2" />
 
           {/* Projects Section */}
           <div className="p-4 space-y-3">
@@ -365,7 +365,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
                 >
                   <Icons.Globe className="w-4 h-4" />
                   All Documents
-                  <span className="ml-auto text-[10px] opacity-60 bg-black/5 dark:bg-white/5 px-1.5 rounded">{history.length}</span>
+                  <span className="ml-auto text-[10px] opacity-60 bg-surface-hover px-1.5 rounded">{history.length}</span>
                 </button>
                 
                 {projects.length === 0 && (
@@ -405,7 +405,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
                         </div>
                       </div>
                       <span className="truncate pr-16 pointer-events-none">{project.name}</span>
-                      <span className="ml-auto text-[10px] opacity-60 bg-black/5 dark:bg-white/5 px-1.5 rounded pointer-events-none">
+                      <span className="ml-auto text-[10px] opacity-60 bg-surface-hover px-1.5 rounded pointer-events-none">
                         {history.filter(d => d.projectId === project.id).length}
                       </span>
                     </button>
@@ -439,7 +439,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
               </div>
           </div>
 
-          <div className="border-t border-border mx-4 my-2 opacity-50" />
+          <div className="border-t border-border mx-4 my-2" />
 
           {/* Recent Searches Section */}
           {recentSearches.length > 0 && (
@@ -471,7 +471,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
             </div>
           )}
 
-          {recentSearches.length > 0 && <div className="border-t border-border mx-4 my-2 opacity-50" />}
+          {recentSearches.length > 0 && <div className="border-t border-border mx-4 my-2" />}
 
           {/* History Section */}
           <div className="p-4">
@@ -521,7 +521,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
                                             onSelectDoc(doc);
                                             if (window.innerWidth < 1024) onClose();
                                         }}
-                                        className={`group relative p-3 rounded-lg bg-surface-hover hover:bg-black/5 dark:hover:bg-white/10 cursor-grab active:cursor-grabbing border border-transparent hover:border-border transition-all hover:-translate-y-px hover:shadow-sm animate-slideUp ${draggingItem?.id === doc.id ? 'opacity-30 border-primary' : ''}`}
+                                        className={`group relative p-3 rounded-lg bg-surface-hover/50 hover:bg-surface-hover cursor-grab active:cursor-grabbing border border-transparent hover:border-border transition-all hover:shadow-sm animate-slideUp ${draggingItem?.id === doc.id ? 'opacity-30 border-primary' : ''}`}
                                     >
                                         <div className="flex items-center justify-between gap-2">
                                           <h3 
