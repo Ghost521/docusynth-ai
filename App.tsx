@@ -1111,25 +1111,25 @@ Keyboard Shortcuts:
               <div className={`flex-1 flex flex-col ${!currentDoc && !isLoading && !showStreamingView ? 'items-center justify-center' : ''}`}>
                   {!currentDoc && !isLoading && !showStreamingView && (
                       <div className="w-full flex flex-col items-center p-6 animate-fadeIn max-w-5xl mx-auto pb-24">
-                        <div className="text-center mb-10">
-                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary font-bold text-[10px] uppercase tracking-widest mb-6">
-                            <Icons.Sparkles className="w-3 h-3" />
+                        <div className="text-center mb-12">
+                          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary font-bold text-[11px] uppercase tracking-widest mb-6 shadow-sm shadow-primary/5">
+                            <Icons.Sparkles className="w-3.5 h-3.5" />
                             Grounding AI Context
                           </div>
-                          <h2 className="text-4xl lg:text-5xl font-bold text-main mb-4 tracking-tight">
+                          <h2 className="text-4xl lg:text-5xl font-extrabold text-main mb-5 tracking-tight leading-[1.1]">
                             Knowledge Synthesis
                           </h2>
-                          <p className="text-secondary max-w-xl mx-auto text-base leading-relaxed">
+                          <p className="text-secondary max-w-lg mx-auto text-base leading-relaxed">
                             Generate dense, up-to-date documentation context for LLMs and AI code editors. Ground your models in reality.
                           </p>
                         </div>
 
-                        <div className="w-full max-w-2xl bg-surface border border-border p-8 rounded-3xl shadow-xl shadow-black/5 dark:shadow-none">
+                        <div className="w-full max-w-2xl bg-surface border border-border p-8 rounded-3xl shadow-theme-lg">
                             <div className="flex justify-center mb-8">
-                              <div className="relative inline-flex gap-1 p-1 bg-surface-hover border border-border rounded-2xl">
-                                <button onClick={() => setMode('search')} className={`relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'search' ? 'text-white' : 'text-secondary hover:text-main'}`}><Icons.Search className="w-4 h-4" />Search</button>
-                                <button onClick={() => setMode('crawl')} className={`relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'crawl' ? 'text-white' : 'text-secondary hover:text-main'}`}><Icons.Globe className="w-4 h-4" />Crawl</button>
-                                <button onClick={() => setMode('github')} className={`relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'github' ? 'text-white dark:text-zinc-900' : 'text-secondary hover:text-main'}`}><Icons.GitHub className="w-4 h-4" />Repo</button>
+                              <div className="relative inline-flex gap-1 p-1 bg-surface-hover/70 border border-border rounded-2xl">
+                                <button onClick={() => setMode('search')} className={`relative z-10 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'search' ? 'text-white' : 'text-main/60 hover:text-main'}`}><Icons.Search className="w-4 h-4" />Search</button>
+                                <button onClick={() => setMode('crawl')} className={`relative z-10 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'crawl' ? 'text-white' : 'text-main/60 hover:text-main'}`}><Icons.Globe className="w-4 h-4" />Crawl</button>
+                                <button onClick={() => setMode('github')} className={`relative z-10 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'github' ? 'text-white dark:text-zinc-900' : 'text-main/60 hover:text-main'}`}><Icons.GitHub className="w-4 h-4" />Repo</button>
                                 {/* Sliding indicator */}
                                 <div
                                   className={`absolute top-1 bottom-1 rounded-xl shadow-md transition-all duration-300 ease-out ${

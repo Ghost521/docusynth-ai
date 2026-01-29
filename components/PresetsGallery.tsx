@@ -49,13 +49,13 @@ const PresetsGallery: React.FC<PresetsGalleryProps> = ({ onSelect, history }) =>
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`
-              flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all rounded-t-xl border-x border-t
-              ${activeTab === tab.id 
-                ? 'bg-background border-border text-main' 
-                : 'bg-surface border-transparent text-secondary hover:text-main hover:bg-surface-hover'}
+              relative flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all rounded-t-xl border-x border-t
+              ${activeTab === tab.id
+                ? 'bg-background border-border text-main after:absolute after:bottom-0 after:left-2 after:right-2 after:h-[2px] after:bg-primary after:rounded-full'
+                : 'bg-surface border-transparent text-tertiary hover:text-main hover:bg-surface-hover'}
             `}
           >
-            <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-primary' : 'text-secondary/60'}`} />
+            <tab.icon className={`w-4 h-4 ${activeTab === tab.id ? 'text-primary' : 'text-tertiary'}`} />
             {tab.label}
             {tab.badge && (
               <span className="ml-1 text-[8px] font-bold bg-primary text-white px-1.5 py-0.5 rounded-full leading-none uppercase">
@@ -71,13 +71,13 @@ const PresetsGallery: React.FC<PresetsGalleryProps> = ({ onSelect, history }) =>
         <div className="w-full overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-border bg-surface/30">
-                <th className="pl-6 pr-4 py-3 text-[10px] font-bold text-secondary uppercase tracking-widest w-1/4">Name</th>
-                <th className="px-4 py-3 text-[10px] font-bold text-secondary uppercase tracking-widest w-1/4">Source</th>
-                <th className="px-4 py-3 text-[10px] font-bold text-secondary uppercase tracking-widest text-right">Tokens</th>
-                <th className="px-4 py-3 text-[10px] font-bold text-secondary uppercase tracking-widest text-right">Snippets</th>
-                <th className="px-4 py-3 text-[10px] font-bold text-secondary uppercase tracking-widest text-right">Update</th>
-                <th className="pl-4 pr-6 py-3 text-[10px] font-bold text-secondary uppercase tracking-widest w-12 text-center">Status</th>
+              <tr className="border-b-2 border-border-strong bg-surface/30">
+                <th className="pl-6 pr-4 py-3 text-[10px] font-extrabold text-secondary uppercase tracking-[0.15em] w-1/4">Name</th>
+                <th className="px-4 py-3 text-[10px] font-extrabold text-secondary uppercase tracking-[0.15em] w-1/4">Source</th>
+                <th className="px-4 py-3 text-[10px] font-extrabold text-secondary uppercase tracking-[0.15em] text-right">Tokens</th>
+                <th className="px-4 py-3 text-[10px] font-extrabold text-secondary uppercase tracking-[0.15em] text-right">Snippets</th>
+                <th className="px-4 py-3 text-[10px] font-extrabold text-secondary uppercase tracking-[0.15em] text-right">Update</th>
+                <th className="pl-4 pr-6 py-3 text-[10px] font-extrabold text-secondary uppercase tracking-[0.15em] w-12 text-center">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -91,10 +91,10 @@ const PresetsGallery: React.FC<PresetsGalleryProps> = ({ onSelect, history }) =>
                 displayPresets.map((preset) => {
                   const Icon = Icons[preset.icon] || Icons.Globe;
                   return (
-                    <tr 
+                    <tr
                       key={preset.id}
                       onClick={() => onSelect({ mode: preset.mode, value: preset.value })}
-                      className="group border-b border-border/40 last:border-0 hover:bg-surface/50 cursor-pointer transition-all hover:-translate-y-px"
+                      className="group border-b border-border/40 last:border-0 border-l-2 border-l-transparent hover:border-l-primary hover:bg-surface-hover cursor-pointer transition-all duration-150"
                     >
                       <td className="pl-6 pr-4 py-4 whitespace-nowrap">
                         <span className="text-sm font-semibold text-primary group-hover:text-emerald-500 transition-colors">
@@ -126,8 +126,8 @@ const PresetsGallery: React.FC<PresetsGalleryProps> = ({ onSelect, history }) =>
                       </td>
                       <td className="pl-4 pr-6 py-4 whitespace-nowrap">
                         <div className="flex justify-center">
-                           <div className="w-5 h-5 rounded-full border border-primary/20 flex items-center justify-center bg-primary/5 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
-                              <Icons.Check className="w-2.5 h-2.5 text-primary" />
+                           <div className="w-6 h-6 rounded-full border border-primary/20 flex items-center justify-center bg-primary/5 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
+                              <Icons.Check className="w-3.5 h-3.5 text-primary" />
                            </div>
                         </div>
                       </td>
