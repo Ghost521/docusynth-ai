@@ -686,3 +686,23 @@ export const Icons = {
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
   )
 };
+
+// Google Material Symbols component
+interface MaterialIconProps {
+  name: string;
+  size?: number;
+  filled?: boolean;
+  className?: string;
+}
+
+export const MaterialIcon: React.FC<MaterialIconProps> = ({ name, size = 24, filled = false, className = '' }) => (
+  <span
+    className={`material-symbols-rounded select-none ${className}`}
+    style={{
+      fontSize: `${size}px`,
+      fontVariationSettings: `'FILL' ${filled ? 1 : 0}, 'wght' 400, 'GRAD' 0, 'opsz' ${size}`,
+    }}
+  >
+    {name}
+  </span>
+);

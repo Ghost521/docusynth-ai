@@ -19,7 +19,7 @@ import PresetsGallery from './components/PresetsGallery';
 import ErrorBoundary from './components/ErrorBoundary';
 import LoadingScreen from './components/LoadingScreen';
 import { ToastContainer, ToastMessage } from './components/Toast';
-import { Icons } from './components/Icon';
+import { Icons, MaterialIcon } from './components/Icon';
 import Tooltip from './components/Tooltip';
 import { v4 as uuidv4 } from 'uuid';
 import JSZip from 'jszip';
@@ -965,7 +965,7 @@ function App() {
             </button>
             <button onClick={handleGoHome} className="flex items-center gap-2.5 group transition-all">
               <div className="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                <Icons.Cpu className="w-5 h-5" />
+                <MaterialIcon name="memory" size={20} />
               </div>
               <h1 className="text-lg font-bold tracking-tight text-main group-hover:text-primary transition-colors">DocuSynth</h1>
             </button>
@@ -1025,10 +1025,12 @@ function App() {
                 className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-background border border-border hover:border-primary/50 rounded-xl text-xs text-secondary hover:text-main transition-all"
                 title="Search Documents (⌘K)"
              >
-                <Icons.Search className="w-4 h-4" />
+                <MaterialIcon name="search" size={16} />
                 <span className="hidden lg:inline">Search</span>
                 <kbd className="hidden lg:inline px-1.5 py-0.5 bg-surface border border-border rounded text-[9px] font-mono ml-1">⌘K</kbd>
              </button>
+
+             <div className="hidden sm:block h-5 w-px bg-border"></div>
 
              {/* Chat Button */}
              <Tooltip label="AI Chat" shortcut="⌘J">
@@ -1037,7 +1039,7 @@ function App() {
                   className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
                   aria-label="AI Chat"
                >
-                  <Icons.Sparkles className="w-5 h-5" />
+                  <MaterialIcon name="auto_awesome" size={20} />
                </button>
              </Tooltip>
 
@@ -1048,7 +1050,7 @@ function App() {
                   className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
                   aria-label="Template Gallery"
                >
-                  <Icons.Folder className="w-5 h-5" />
+                  <MaterialIcon name="folder_open" size={20} />
                </button>
              </Tooltip>
 
@@ -1059,9 +1061,11 @@ function App() {
                   className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
                   aria-label="Analytics Dashboard"
                >
-                  <Icons.Chart className="w-5 h-5" />
+                  <MaterialIcon name="bar_chart" size={20} />
                </button>
              </Tooltip>
+
+             <div className="hidden sm:block h-5 w-px bg-border"></div>
 
              <Tooltip label="Shortcuts">
                <button
@@ -1080,16 +1084,18 @@ Keyboard Shortcuts:
                   className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
                   aria-label="View shortcuts"
                >
-                  <Icons.Keyboard className="w-5 h-5" />
+                  <MaterialIcon name="keyboard" size={20} />
                </button>
              </Tooltip>
 
              <Tooltip label="Settings">
-               <button onClick={() => openSettings('local')} className="p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]" aria-label="Settings"><Icons.Settings className="w-5 h-5" /></button>
+               <button onClick={() => openSettings('local')} className="p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]" aria-label="Settings">
+                  <MaterialIcon name="settings" size={20} />
+               </button>
              </Tooltip>
              <Tooltip label={theme === 'dark' ? 'Light Mode' : 'Dark Mode'}>
                <button onClick={toggleTheme} className="p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]" aria-label="Toggle theme">
-                  {theme === 'dark' ? <Icons.Sun className="w-5 h-5" /> : <Icons.Moon className="w-5 h-5" />}
+                  <MaterialIcon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} size={20} />
                </button>
              </Tooltip>
           </div>
