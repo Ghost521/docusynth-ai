@@ -94,7 +94,7 @@ const PresetsGallery: React.FC<PresetsGalleryProps> = ({ onSelect, history }) =>
                     <tr 
                       key={preset.id}
                       onClick={() => onSelect({ mode: preset.mode, value: preset.value })}
-                      className="group border-b border-border/40 last:border-0 hover:bg-surface/50 cursor-pointer transition-all"
+                      className="group border-b border-border/40 last:border-0 hover:bg-surface/50 cursor-pointer transition-all hover:-translate-y-px"
                     >
                       <td className="pl-6 pr-4 py-4 whitespace-nowrap">
                         <span className="text-sm font-semibold text-primary group-hover:text-emerald-500 transition-colors">

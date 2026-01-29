@@ -123,18 +123,18 @@ export default function AuditExportModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-hidden">
+      <div className="bg-surface rounded-xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-2">
             <Icons.Download className="w-5 h-5 text-indigo-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h2 className="text-lg font-semibold text-main">
               Export Audit Logs
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-2 hover:bg-surface-hover rounded-lg transition-colors"
           >
             <Icons.X className="w-5 h-5 text-gray-500" />
           </button>
@@ -151,7 +151,7 @@ export default function AuditExportModal({
 
           {/* Format Selection */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-secondary mb-2">
               Export Format
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -160,16 +160,16 @@ export default function AuditExportModal({
                 className={`p-4 border rounded-lg text-left transition-colors ${
                   format === "json"
                     ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30"
-                    : "border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    : "border-border hover:bg-surface-hover"
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
                   <Icons.FileJson className="w-5 h-5 text-indigo-500" />
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <span className="font-medium text-main">
                     JSON
                   </span>
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-secondary">
                   Machine-readable format for integrations
                 </p>
               </button>
@@ -178,16 +178,16 @@ export default function AuditExportModal({
                 className={`p-4 border rounded-lg text-left transition-colors ${
                   format === "csv"
                     ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30"
-                    : "border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    : "border-border hover:bg-surface-hover"
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
                   <Icons.FileText className="w-5 h-5 text-green-500" />
-                  <span className="font-medium text-gray-900 dark:text-white">
+                  <span className="font-medium text-main">
                     CSV
                   </span>
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-secondary">
                   Spreadsheet format for analysis
                 </p>
               </button>
@@ -196,7 +196,7 @@ export default function AuditExportModal({
 
           {/* Date Range */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-secondary mb-2">
               Date Range
             </label>
             <div className="flex items-center gap-2">
@@ -204,14 +204,14 @@ export default function AuditExportModal({
                 type="date"
                 value={formatDateForInput(startTime)}
                 onChange={(e) => setStartTime(parseDateInput(e.target.value))}
-                className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="flex-1 px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               <span className="text-gray-500">to</span>
               <input
                 type="date"
                 value={formatDateForInput(endTime)}
                 onChange={(e) => setEndTime(parseDateInput(e.target.value))}
-                className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="flex-1 px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
           </div>
@@ -220,13 +220,13 @@ export default function AuditExportModal({
           <div className="grid grid-cols-2 gap-4 mb-4">
             {/* Category Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-secondary mb-1">
                 Category
               </label>
               <select
                 value={category || ""}
                 onChange={(e) => setCategory(e.target.value || undefined)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 <option value="">All categories</option>
                 {categories?.map((cat) => (
@@ -239,13 +239,13 @@ export default function AuditExportModal({
 
             {/* Severity Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-secondary mb-1">
                 Severity
               </label>
               <select
                 value={severity || ""}
                 onChange={(e) => setSeverity(e.target.value || undefined)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 <option value="">All severities</option>
                 <option value="info">Info</option>
@@ -257,13 +257,13 @@ export default function AuditExportModal({
 
           {/* Max Records */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-secondary mb-1">
               Maximum Records
             </label>
             <select
               value={maxRecords}
               onChange={(e) => setMaxRecords(Number(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value={1000}>1,000 records</option>
               <option value={5000}>5,000 records</option>
@@ -272,35 +272,35 @@ export default function AuditExportModal({
           </div>
 
           {/* Export Summary */}
-          <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-            <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <div className="p-4 bg-gray-50 dark:bg-surface-hover/50 rounded-lg">
+            <h4 className="text-sm font-medium text-secondary mb-2">
               Export Summary
             </h4>
             <div className="grid grid-cols-2 gap-2 text-sm">
-              <div className="text-gray-500 dark:text-gray-400">Format:</div>
-              <div className="text-gray-900 dark:text-white font-medium">
+              <div className="text-secondary">Format:</div>
+              <div className="text-main font-medium">
                 {format.toUpperCase()}
               </div>
-              <div className="text-gray-500 dark:text-gray-400">Date Range:</div>
-              <div className="text-gray-900 dark:text-white font-medium">
+              <div className="text-secondary">Date Range:</div>
+              <div className="text-main font-medium">
                 {dateRange.start} - {dateRange.end}
               </div>
-              <div className="text-gray-500 dark:text-gray-400">Records:</div>
-              <div className="text-gray-900 dark:text-white font-medium">
+              <div className="text-secondary">Records:</div>
+              <div className="text-main font-medium">
                 {recordCount.toLocaleString()} events
               </div>
               {category && (
                 <>
-                  <div className="text-gray-500 dark:text-gray-400">Category:</div>
-                  <div className="text-gray-900 dark:text-white font-medium">
+                  <div className="text-secondary">Category:</div>
+                  <div className="text-main font-medium">
                     {category}
                   </div>
                 </>
               )}
               {severity && (
                 <>
-                  <div className="text-gray-500 dark:text-gray-400">Severity:</div>
-                  <div className="text-gray-900 dark:text-white font-medium capitalize">
+                  <div className="text-secondary">Severity:</div>
+                  <div className="text-main font-medium capitalize">
                     {severity}
                   </div>
                 </>
@@ -310,14 +310,14 @@ export default function AuditExportModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-          <div className="text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex items-center justify-between p-4 border-t border-border bg-gray-50 dark:bg-surface">
+          <div className="text-sm text-secondary">
             Export for compliance audits
           </div>
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="px-4 py-2 text-secondary hover:bg-surface-hover rounded-lg transition-colors"
             >
               Cancel
             </button>

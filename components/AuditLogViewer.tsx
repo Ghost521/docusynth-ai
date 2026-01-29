@@ -121,16 +121,16 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
   };
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-900">
+    <div className="flex flex-col h-full bg-background">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-between p-4 border-b border-border">
         <div className="flex items-center gap-3">
           <Icons.Shield className="w-6 h-6 text-indigo-500" />
           <div>
-            <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <h1 className="text-xl font-semibold text-main">
               Audit Log
             </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-secondary">
               Track all activities and changes
             </p>
           </div>
@@ -141,7 +141,7 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
             className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
               showFilters || activeFilterCount > 0
                 ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400"
-                : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                : "bg-gray-100 text-gray-700 dark:bg-surface dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
             }`}
           >
             <Icons.Filter className="w-4 h-4" />
@@ -154,7 +154,7 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
           </button>
           <button
             onClick={() => setShowExportModal(true)}
-            className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 dark:bg-surface dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           >
             <Icons.Download className="w-4 h-4" />
             Export
@@ -162,7 +162,7 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
           {onClose && (
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              className="p-2 hover:bg-surface-hover rounded-lg transition-colors"
             >
               <Icons.X className="w-5 h-5 text-gray-500" />
             </button>
@@ -172,30 +172,30 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
 
       {/* Stats Summary */}
       {stats && (
-        <div className="grid grid-cols-4 gap-4 p-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-            <div className="text-2xl font-semibold text-gray-900 dark:text-white">
+        <div className="grid grid-cols-4 gap-4 p-4 border-b border-border">
+          <div className="bg-gray-50 dark:bg-surface p-3 rounded-lg">
+            <div className="text-2xl font-semibold text-main">
               {stats.totalEvents.toLocaleString()}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">Total Events</div>
+            <div className="text-xs text-secondary">Total Events</div>
           </div>
-          <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+          <div className="bg-gray-50 dark:bg-surface p-3 rounded-lg">
             <div className="text-2xl font-semibold text-red-600 dark:text-red-400">
               {stats.bySeverity.critical || 0}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">Critical</div>
+            <div className="text-xs text-secondary">Critical</div>
           </div>
-          <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+          <div className="bg-gray-50 dark:bg-surface p-3 rounded-lg">
             <div className="text-2xl font-semibold text-yellow-600 dark:text-yellow-400">
               {stats.bySeverity.warning || 0}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">Warnings</div>
+            <div className="text-xs text-secondary">Warnings</div>
           </div>
-          <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+          <div className="bg-gray-50 dark:bg-surface p-3 rounded-lg">
             <div className="text-2xl font-semibold text-blue-600 dark:text-blue-400">
               {Object.keys(stats.byCategory).length}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">Categories</div>
+            <div className="text-xs text-secondary">Categories</div>
           </div>
         </div>
       )}
@@ -211,7 +211,7 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
       )}
 
       {/* Search Bar */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 border-b border-border">
         <div className="relative">
           <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
@@ -219,7 +219,7 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
             placeholder="Search events by action, user, or resource..."
             value={filters.searchQuery || ""}
             onChange={(e) => setFilters({ ...filters, searchQuery: e.target.value })}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
       </div>
@@ -227,7 +227,7 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
       {/* Events List */}
       <div className="flex-1 overflow-auto">
         {filteredEvents.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-64 text-gray-500 dark:text-gray-400">
+          <div className="flex flex-col items-center justify-center h-64 text-secondary">
             <Icons.History className="w-12 h-12 mb-4 opacity-50" />
             <p className="text-lg font-medium">No audit events found</p>
             <p className="text-sm mt-1">
@@ -260,7 +260,7 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
           <div className="p-4 text-center">
             <button
               onClick={loadMore}
-              className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="px-4 py-2 bg-gray-100 dark:bg-surface text-secondary rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
               Load More ({totalCount - filteredEvents.length} remaining)
             </button>
@@ -269,8 +269,8 @@ export default function AuditLogViewer({ workspaceId, onClose }: AuditLogViewerP
       </div>
 
       {/* Footer */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-        <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+      <div className="p-4 border-t border-border bg-gray-50 dark:bg-surface">
+        <div className="flex items-center justify-between text-sm text-secondary">
           <span>
             Showing {filteredEvents.length} of {totalCount} events
           </span>

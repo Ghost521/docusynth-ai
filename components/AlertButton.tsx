@@ -13,7 +13,7 @@ export default function AlertButton({ onClick }: AlertButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="relative p-2 text-gray-500 dark:text-gray-400 hover:text-orange-500 dark:hover:text-orange-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+      className="relative p-2 text-secondary hover:text-orange-500 dark:hover:text-orange-400 hover:bg-surface-hover rounded-lg transition-colors"
       title={
         pendingCount && pendingCount > 0
           ? `${pendingCount} pending alerts`

@@ -57,7 +57,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   api: "bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400",
   webhook: "bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400",
   admin: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
-  system: "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300",
+  system: "bg-gray-100 text-gray-700 dark:bg-surface-hover dark:text-gray-300",
   security: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
 };
 
@@ -119,7 +119,7 @@ export default function AuditLogEntry({
 
     return (
       <div className="mt-3 space-y-2">
-        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Changes</h4>
+        <h4 className="text-sm font-medium text-secondary">Changes</h4>
         <div className="grid grid-cols-2 gap-4">
           {/* Before */}
           {before && Object.keys(before).length > 0 && (
@@ -127,7 +127,7 @@ export default function AuditLogEntry({
               <div className="text-xs font-medium text-red-600 dark:text-red-400 mb-2">
                 Before
               </div>
-              <pre className="text-xs text-gray-700 dark:text-gray-300 overflow-auto max-h-48">
+              <pre className="text-xs text-secondary overflow-auto max-h-48">
                 {JSON.stringify(before, null, 2)}
               </pre>
             </div>
@@ -139,7 +139,7 @@ export default function AuditLogEntry({
               <div className="text-xs font-medium text-green-600 dark:text-green-400 mb-2">
                 After
               </div>
-              <pre className="text-xs text-gray-700 dark:text-gray-300 overflow-auto max-h-48">
+              <pre className="text-xs text-secondary overflow-auto max-h-48">
                 {JSON.stringify(after, null, 2)}
               </pre>
             </div>
@@ -155,10 +155,10 @@ export default function AuditLogEntry({
 
     return (
       <div className="mt-3">
-        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <h4 className="text-sm font-medium text-secondary mb-2">
           Additional Details
         </h4>
-        <pre className="text-xs bg-gray-50 dark:bg-gray-800 p-3 rounded-lg text-gray-700 dark:text-gray-300 overflow-auto max-h-48">
+        <pre className="text-xs bg-gray-50 dark:bg-surface p-3 rounded-lg text-secondary overflow-auto max-h-48">
           {JSON.stringify(event.metadata, null, 2)}
         </pre>
       </div>
@@ -168,7 +168,7 @@ export default function AuditLogEntry({
   return (
     <div
       className={`p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors ${
-        isExpanded ? "bg-gray-50 dark:bg-gray-800/50" : ""
+        isExpanded ? "bg-gray-50 dark:bg-surface/50" : ""
       }`}
     >
       {/* Main Row */}
@@ -189,14 +189,14 @@ export default function AuditLogEntry({
             <div>
               {/* Action */}
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-medium text-gray-900 dark:text-white">
+                <span className="font-medium text-main">
                   {formatAction(event.action)}
                 </span>
                 {getSeverityBadge(event.severity || "info")}
               </div>
 
               {/* User and Resource */}
-              <div className="flex items-center gap-2 mt-1 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
+              <div className="flex items-center gap-2 mt-1 text-sm text-secondary flex-wrap">
                 <span className="flex items-center gap-1">
                   <Icons.User className="w-3.5 h-3.5" />
                   {event.userEmail || event.userId}
@@ -215,7 +215,7 @@ export default function AuditLogEntry({
 
             {/* Timestamp and Expand Icon */}
             <div className="flex items-center gap-3 flex-shrink-0">
-              <span className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
+              <span className="text-sm text-secondary whitespace-nowrap">
                 {formatTimestamp(event.timestamp)}
               </span>
               <div
@@ -236,7 +236,7 @@ export default function AuditLogEntry({
               {getCategoryName(event.actionCategory)}
             </span>
             {event.resourceType && (
-              <span className="px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 rounded">
+              <span className="px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-600 dark:bg-surface-hover dark:text-gray-400 rounded">
                 {event.resourceType}
               </span>
             )}
@@ -246,49 +246,49 @@ export default function AuditLogEntry({
 
       {/* Expanded Details */}
       {isExpanded && (
-        <div className="mt-4 ml-14 border-t border-gray-200 dark:border-gray-700 pt-4">
+        <div className="mt-4 ml-14 border-t border-border pt-4">
           {/* Details Grid */}
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span className="text-gray-500 dark:text-gray-400">Event ID:</span>
-              <span className="ml-2 font-mono text-gray-700 dark:text-gray-300">
+              <span className="text-secondary">Event ID:</span>
+              <span className="ml-2 font-mono text-secondary">
                 {event._id}
               </span>
             </div>
             <div>
-              <span className="text-gray-500 dark:text-gray-400">User ID:</span>
-              <span className="ml-2 font-mono text-gray-700 dark:text-gray-300">
+              <span className="text-secondary">User ID:</span>
+              <span className="ml-2 font-mono text-secondary">
                 {event.userId}
               </span>
             </div>
             {event.sessionId && (
               <div>
-                <span className="text-gray-500 dark:text-gray-400">Session:</span>
-                <span className="ml-2 font-mono text-gray-700 dark:text-gray-300">
+                <span className="text-secondary">Session:</span>
+                <span className="ml-2 font-mono text-secondary">
                   {event.sessionId}
                 </span>
               </div>
             )}
             {event.resourceId && (
               <div>
-                <span className="text-gray-500 dark:text-gray-400">Resource ID:</span>
-                <span className="ml-2 font-mono text-gray-700 dark:text-gray-300">
+                <span className="text-secondary">Resource ID:</span>
+                <span className="ml-2 font-mono text-secondary">
                   {event.resourceId}
                 </span>
               </div>
             )}
             {event.ipAddress && (
               <div>
-                <span className="text-gray-500 dark:text-gray-400">IP Address:</span>
-                <span className="ml-2 font-mono text-gray-700 dark:text-gray-300">
+                <span className="text-secondary">IP Address:</span>
+                <span className="ml-2 font-mono text-secondary">
                   {event.ipAddress}
                 </span>
               </div>
             )}
             {event.userAgent && (
               <div className="col-span-2">
-                <span className="text-gray-500 dark:text-gray-400">User Agent:</span>
-                <span className="ml-2 font-mono text-gray-700 dark:text-gray-300 text-xs break-all">
+                <span className="text-secondary">User Agent:</span>
+                <span className="ml-2 font-mono text-secondary text-xs break-all">
                   {event.userAgent}
                 </span>
               </div>
@@ -302,8 +302,8 @@ export default function AuditLogEntry({
           {renderMetadata()}
 
           {/* Timestamp Details */}
-          <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
-            <div className="text-xs text-gray-500 dark:text-gray-400">
+          <div className="mt-4 pt-3 border-t border-border">
+            <div className="text-xs text-secondary">
               <span className="font-medium">Precise timestamp:</span>{" "}
               {new Date(event.timestamp).toISOString()}
             </div>

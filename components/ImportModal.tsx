@@ -310,8 +310,8 @@ const ImportModal: React.FC<ImportModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-md animate-fadeIn" onClick={onClose} />
-      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-4xl w-full flex flex-col max-h-[90vh] overflow-hidden animate-fadeIn">
+      <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md animate-fadeIn" onClick={onClose} />
+      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-4xl w-full flex flex-col max-h-[90vh] overflow-hidden animate-scaleIn">
         {/* Header */}
         <header className="p-6 border-b border-border bg-surface-hover/20 flex items-center justify-between">
           <div className="flex items-center gap-3">

@@ -18,7 +18,7 @@ const MoveDocModal: React.FC<MoveDocModalProps> = ({ isOpen, onClose, doc, proje
     <div className="fixed inset-0 z-[90] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fadeIn" onClick={onClose} />
       
-      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-fadeIn">
+      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-scaleIn">
         <header className="p-4 border-b border-border flex items-center justify-between bg-surface-hover/30">
           <div className="flex items-center gap-2">
             <Icons.Folder className="w-4 h-4 text-primary" />

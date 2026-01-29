@@ -62,7 +62,7 @@ export function SSOLoginButton({
 
   const variantClasses = {
     primary: 'bg-blue-500 text-white hover:bg-blue-600',
-    outline: 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700',
+    outline: 'border border-border text-secondary hover:bg-surface-hover',
   };
 
   const handleClick = async () => {
@@ -153,7 +153,7 @@ export function AutoSSOButton({
   // Loading state
   if (!ssoCheck) {
     return (
-      <div className={`animate-pulse h-10 bg-gray-200 dark:bg-gray-700 rounded-lg ${className}`} />
+      <div className={`animate-pulse h-10 bg-gray-200 dark:bg-surface-hover rounded-lg ${className}`} />
     );
   }
 
@@ -188,7 +188,7 @@ export function SSOButtonsList({
   if (!configs) {
     return (
       <div className={`space-y-2 ${className}`}>
-        <div className="animate-pulse h-10 bg-gray-200 dark:bg-gray-700 rounded-lg" />
+        <div className="animate-pulse h-10 bg-gray-200 dark:bg-surface-hover rounded-lg" />
       </div>
     );
   }
@@ -229,10 +229,10 @@ export function SSODivider({ text = 'or continue with', className = '' }: SSODiv
   return (
     <div className={`relative ${className}`}>
       <div className="absolute inset-0 flex items-center">
-        <div className="w-full border-t border-gray-200 dark:border-gray-700" />
+        <div className="w-full border-t border-border" />
       </div>
       <div className="relative flex justify-center text-sm">
-        <span className="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+        <span className="px-4 bg-surface text-secondary">
           {text}
         </span>
       </div>
@@ -266,10 +266,10 @@ export function SSORequiredBanner({
           <Icons.Shield className="w-6 h-6 text-blue-600 dark:text-blue-400" />
         </div>
         <div className="flex-1">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+          <h3 className="font-semibold text-main mb-1">
             SSO Required
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-sm text-secondary mb-4">
             {workspaceName ? (
               <>
                 <strong>{workspaceName}</strong> requires you to sign in using Single Sign-On
@@ -321,7 +321,7 @@ export function SSOBadge({
         inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium
         ${enforced
           ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-          : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+          : 'bg-gray-100 dark:bg-surface-hover text-secondary'
         }
         ${className}
       `}

@@ -150,26 +150,26 @@ export default function ScheduleModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm">
+      <div className="bg-surface rounded-xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
               <Icons.Clock className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-lg font-semibold text-main">
                 Scheduled Updates
               </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-xs">
+              <p className="text-sm text-secondary truncate max-w-xs">
                 {documentTopic}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-2 hover:bg-surface-hover rounded-lg transition-colors"
           >
             <Icons.X className="w-5 h-5 text-gray-500" />
           </button>
@@ -178,13 +178,13 @@ export default function ScheduleModal({
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {/* Tabs */}
-          <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
+          <div className="flex gap-2 border-b border-border pb-2">
             <button
               onClick={() => setShowHistory(false)}
               className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                 !showHistory
                   ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
-                  : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  : "text-secondary hover:bg-surface-hover"
               }`}
             >
               Schedule
@@ -195,7 +195,7 @@ export default function ScheduleModal({
               className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                 showHistory
                   ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
-                  : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  : "text-secondary hover:bg-surface-hover"
               } ${!schedule ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               History
@@ -206,42 +206,42 @@ export default function ScheduleModal({
             <>
               {/* Current Schedule Status */}
               {schedule && !isEditing && (
-                <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 space-y-3">
+                <div className="bg-gray-50 dark:bg-surface-hover/50 rounded-lg p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-medium text-secondary">
                       Status
                     </span>
                     <span
                       className={`px-2 py-1 text-xs font-medium rounded-full ${
                         schedule.isActive
                           ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300"
-                          : "bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300"
+                          : "bg-gray-100 dark:bg-gray-600 text-secondary"
                       }`}
                     >
                       {schedule.isActive ? "Active" : "Paused"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-medium text-secondary">
                       Schedule
                     </span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                    <span className="text-sm text-secondary">
                       {getFrequencyDescription()}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-medium text-secondary">
                       Next Run
                     </span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                    <span className="text-sm text-secondary">
                       {formatDate(schedule.nextRunAt)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-medium text-secondary">
                       Last Run
                     </span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                    <span className="text-sm text-secondary">
                       {formatDate(schedule.lastRunAt)}
                       {schedule.lastRunStatus && (
                         <span className={`ml-2 ${getStatusColor(schedule.lastRunStatus)}`}>
@@ -251,10 +251,10 @@ export default function ScheduleModal({
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-medium text-secondary">
                       Statistics
                     </span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                    <span className="text-sm text-secondary">
                       {schedule.successfulRuns}/{schedule.totalRuns} successful
                     </span>
                   </div>
@@ -266,13 +266,13 @@ export default function ScheduleModal({
                 <div className="space-y-4">
                   {/* Frequency */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Frequency
                     </label>
                     <select
                       value={frequency}
                       onChange={(e) => setFrequency(e.target.value as Frequency)}
-                      className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-border rounded-lg text-main focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     >
                       <option value="daily">Daily</option>
                       <option value="weekly">Weekly</option>
@@ -284,13 +284,13 @@ export default function ScheduleModal({
                   {/* Day of Week (for weekly/biweekly) */}
                   {(frequency === "weekly" || frequency === "biweekly") && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-secondary mb-2">
                         Day of Week
                       </label>
                       <select
                         value={dayOfWeek}
                         onChange={(e) => setDayOfWeek(parseInt(e.target.value))}
-                        className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-surface border border-border rounded-lg text-main focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                       >
                         {DAYS_OF_WEEK.map((day, index) => (
                           <option key={day} value={index}>
@@ -304,13 +304,13 @@ export default function ScheduleModal({
                   {/* Day of Month (for monthly) */}
                   {frequency === "monthly" && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-secondary mb-2">
                         Day of Month
                       </label>
                       <select
                         value={dayOfMonth}
                         onChange={(e) => setDayOfMonth(parseInt(e.target.value))}
-                        className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-surface border border-border rounded-lg text-main focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                       >
                         {Array.from({ length: 28 }, (_, i) => i + 1).map((day) => (
                           <option key={day} value={day}>
@@ -318,7 +318,7 @@ export default function ScheduleModal({
                           </option>
                         ))}
                       </select>
-                      <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      <p className="mt-1 text-xs text-secondary">
                         Days 29-31 may be skipped in shorter months
                       </p>
                     </div>
@@ -326,13 +326,13 @@ export default function ScheduleModal({
 
                   {/* Hour of Day */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Time (UTC)
                     </label>
                     <select
                       value={hourOfDay}
                       onChange={(e) => setHourOfDay(parseInt(e.target.value))}
-                      className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-3 py-2 bg-surface border border-border rounded-lg text-main focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     >
                       {HOURS.map((hour) => (
                         <option key={hour} value={hour}>
@@ -368,7 +368,7 @@ export default function ScheduleModal({
                     </button>
                     <button
                       onClick={() => setIsEditing(true)}
-                      className="flex-1 px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                      className="flex-1 px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-surface-hover text-secondary rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                     >
                       Edit
                     </button>
@@ -390,7 +390,7 @@ export default function ScheduleModal({
                     {schedule && (
                       <button
                         onClick={() => setIsEditing(false)}
-                        className="flex-1 px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                        className="flex-1 px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-surface-hover text-secondary rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                       >
                         Cancel
                       </button>
@@ -412,17 +412,17 @@ export default function ScheduleModal({
                 runHistory.map((run) => (
                   <div
                     key={run._id}
-                    className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3 space-y-2"
+                    className="bg-gray-50 dark:bg-surface-hover/50 rounded-lg p-3 space-y-2"
                   >
                     <div className="flex items-center justify-between">
                       <span className={`text-sm font-medium ${getStatusColor(run.status)}`}>
                         {run.status.charAt(0).toUpperCase() + run.status.slice(1)}
                       </span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                      <span className="text-xs text-secondary">
                         {formatDate(run.startedAt)}
                       </span>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-xs text-gray-600 dark:text-gray-400">
+                    <div className="grid grid-cols-2 gap-2 text-xs text-secondary">
                       <div>Duration: {formatDuration(run.durationMs)}</div>
                       <div>
                         Content:{" "}
@@ -447,7 +447,7 @@ export default function ScheduleModal({
                   </div>
                 ))
               ) : (
-                <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+                <div className="text-center py-8 text-secondary">
                   <Icons.Clock className="w-8 h-8 mx-auto mb-2 opacity-50" />
                   <p>No run history yet</p>
                 </div>

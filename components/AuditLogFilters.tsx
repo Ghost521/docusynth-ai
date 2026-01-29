@@ -95,11 +95,11 @@ export default function AuditLogFilters({
   };
 
   return (
-    <div className="p-4 bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-700">
+    <div className="p-4 bg-gray-50 dark:bg-surface/50 border-b border-border">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Date Range */}
         <div className="lg:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-secondary mb-2">
             Date Range
           </label>
 
@@ -112,7 +112,7 @@ export default function AuditLogFilters({
                 className={`px-2 py-1 text-xs rounded transition-colors ${
                   selectedPreset === preset.label
                     ? "bg-indigo-600 text-white"
-                    : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    : "bg-surface text-secondary border border-border hover:bg-surface-hover"
                 }`}
               >
                 {preset.label}
@@ -129,7 +129,7 @@ export default function AuditLogFilters({
                 onChange={(e) =>
                   updateFilter("startTime", parseDateInput(e.target.value))
                 }
-                className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="Start date"
               />
             </div>
@@ -141,7 +141,7 @@ export default function AuditLogFilters({
                 onChange={(e) =>
                   updateFilter("endTime", parseDateInput(e.target.value))
                 }
-                className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="End date"
               />
             </div>
@@ -150,7 +150,7 @@ export default function AuditLogFilters({
 
         {/* Category Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-secondary mb-2">
             Category
           </label>
           <select
@@ -161,7 +161,7 @@ export default function AuditLogFilters({
                 e.target.value || undefined
               )
             }
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="">All categories</option>
             {categories?.map((category) => (
@@ -174,7 +174,7 @@ export default function AuditLogFilters({
 
         {/* Severity Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-secondary mb-2">
             Severity
           </label>
           <select
@@ -185,7 +185,7 @@ export default function AuditLogFilters({
                 (e.target.value || undefined) as AuditFilters["severity"]
               )
             }
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="">All severities</option>
             <option value="info">Info</option>
@@ -196,7 +196,7 @@ export default function AuditLogFilters({
 
         {/* Action Type Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-secondary mb-2">
             Action Type
           </label>
           <select
@@ -204,7 +204,7 @@ export default function AuditLogFilters({
             onChange={(e) =>
               updateFilter("action", e.target.value || undefined)
             }
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="">All actions</option>
             {actionTypes?.map((action) => (
@@ -217,7 +217,7 @@ export default function AuditLogFilters({
 
         {/* Resource Type Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-secondary mb-2">
             Resource Type
           </label>
           <select
@@ -225,7 +225,7 @@ export default function AuditLogFilters({
             onChange={(e) =>
               updateFilter("resourceType", e.target.value || undefined)
             }
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="">All resources</option>
             <option value="user">User</option>
@@ -241,7 +241,7 @@ export default function AuditLogFilters({
 
         {/* User ID Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-secondary mb-2">
             User ID
           </label>
           <input
@@ -251,16 +251,16 @@ export default function AuditLogFilters({
               updateFilter("userId", e.target.value || undefined)
             }
             placeholder="Filter by user ID"
-            className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center justify-end gap-3 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="flex items-center justify-end gap-3 mt-4 pt-4 border-t border-border">
         <button
           onClick={handleReset}
-          className="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+          className="px-4 py-2 text-sm text-secondary hover:bg-surface-hover rounded-lg transition-colors"
         >
           Reset Filters
         </button>
@@ -275,7 +275,7 @@ export default function AuditLogFilters({
       {/* Active Filters Summary */}
       {Object.keys(filters).filter((k) => filters[k as keyof AuditFilters]).length > 0 && (
         <div className="mt-3 flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-gray-500 dark:text-gray-400">Active filters:</span>
+          <span className="text-xs text-secondary">Active filters:</span>
           {filters.startTime && (
             <span className="px-2 py-0.5 text-xs bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded">
               From: {new Date(filters.startTime).toLocaleDateString()}

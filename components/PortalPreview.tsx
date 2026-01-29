@@ -47,7 +47,7 @@ const PortalPreview: React.FC<PortalPreviewProps> = ({ portalId, onClose }) => {
 
     return (
       <div
-        className={`h-full overflow-auto ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}
+        className={`h-full overflow-auto ${isDark ? 'bg-background text-white' : 'bg-white text-gray-900'}`}
         style={{ fontFamily: branding.fontFamily }}
       >
         {/* Header */}
@@ -179,7 +179,7 @@ const PortalPreview: React.FC<PortalPreviewProps> = ({ portalId, onClose }) => {
                           onClick={() => setCurrentPath(`/docs/${doc.slug}`)}
                           className={`text-left p-4 rounded-xl border transition-colors ${
                             isDark
-                              ? 'border-gray-700 hover:bg-gray-800'
+                              ? 'border-border hover:bg-gray-800'
                               : 'border-gray-200 hover:bg-gray-50'
                           }`}
                         >
@@ -282,9 +282,9 @@ const PortalPreview: React.FC<PortalPreviewProps> = ({ portalId, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-gray-900">
+    <div className="fixed inset-0 z-50 flex flex-col bg-background">
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700">
+      <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-border">
         <div className="flex items-center gap-4">
           <button
             onClick={onClose}
@@ -372,7 +372,7 @@ const PortalPreview: React.FC<PortalPreviewProps> = ({ portalId, onClose }) => {
       </div>
 
       {/* Preview Area */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-gray-900 overflow-auto">
+      <div className="flex-1 flex items-center justify-center p-8 bg-background overflow-auto">
         <div
           className="bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-300"
           style={{
@@ -387,7 +387,7 @@ const PortalPreview: React.FC<PortalPreviewProps> = ({ portalId, onClose }) => {
       </div>
 
       {/* Info Bar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-t border-gray-700 text-xs text-gray-400">
+      <div className="flex items-center justify-between px-4 py-2 bg-gray-800 border-t border-border text-xs text-gray-400">
         <div className="flex items-center gap-4">
           <span>
             {deviceSizes[device].width} x {deviceSizes[device].height}px

@@ -90,16 +90,16 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
+      <div className="bg-surface rounded-xl shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-2">
             <Icons.Key className="w-5 h-5 text-indigo-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">API Keys</h2>
+            <h2 className="text-lg font-semibold text-main">API Keys</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-2 hover:bg-surface-hover rounded-lg transition-colors"
           >
             <Icons.X className="w-5 h-5 text-gray-500" />
           </button>
@@ -123,16 +123,16 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
               <p className="text-sm text-green-700 dark:text-green-300 mb-2">
                 Make sure to copy your API key now. You won't be able to see it again!
               </p>
-              <div className="flex items-center gap-2 bg-white dark:bg-gray-800 p-2 rounded border border-green-200 dark:border-green-700">
-                <code className="flex-1 text-sm font-mono text-gray-900 dark:text-white break-all">
+              <div className="flex items-center gap-2 bg-surface p-2 rounded border border-green-200 dark:border-green-700">
+                <code className="flex-1 text-sm font-mono text-main break-all">
                   {createdKey}
                 </code>
                 <button
                   onClick={() => copyToClipboard(createdKey)}
-                  className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
+                  className="p-1.5 hover:bg-surface-hover rounded"
                   title="Copy to clipboard"
                 >
-                  <Icons.Copy className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                  <Icons.Copy className="w-4 h-4 text-secondary" />
                 </button>
               </div>
               <button
@@ -149,32 +149,32 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
 
           {/* Usage Stats */}
           {usageStats && (
-            <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Usage (Last 7 Days)</h3>
+            <div className="p-4 border-b border-border">
+              <h3 className="text-sm font-medium text-secondary mb-3">Usage (Last 7 Days)</h3>
               <div className="grid grid-cols-4 gap-4">
-                <div className="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-lg">
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-white">
+                <div className="bg-gray-50 dark:bg-surface-hover/50 p-3 rounded-lg">
+                  <div className="text-2xl font-semibold text-main">
                     {usageStats.totalRequests}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Total Requests</div>
+                  <div className="text-xs text-secondary">Total Requests</div>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-lg">
+                <div className="bg-gray-50 dark:bg-surface-hover/50 p-3 rounded-lg">
                   <div className="text-2xl font-semibold text-green-600 dark:text-green-400">
                     {usageStats.successfulRequests}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Successful</div>
+                  <div className="text-xs text-secondary">Successful</div>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-lg">
+                <div className="bg-gray-50 dark:bg-surface-hover/50 p-3 rounded-lg">
                   <div className="text-2xl font-semibold text-red-600 dark:text-red-400">
                     {usageStats.failedRequests}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Failed</div>
+                  <div className="text-xs text-secondary">Failed</div>
                 </div>
-                <div className="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-lg">
-                  <div className="text-2xl font-semibold text-gray-900 dark:text-white">
+                <div className="bg-gray-50 dark:bg-surface-hover/50 p-3 rounded-lg">
+                  <div className="text-2xl font-semibold text-main">
                     {usageStats.avgResponseTime}ms
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">Avg Response</div>
+                  <div className="text-xs text-secondary">Avg Response</div>
                 </div>
               </div>
             </div>
@@ -182,7 +182,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
 
           {/* Create new key button */}
           {!showCreateForm && !createdKey && (
-            <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="p-4 border-b border-border">
               <button
                 onClick={() => setShowCreateForm(true)}
                 className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
@@ -195,12 +195,12 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
 
           {/* Create form */}
           {showCreateForm && !createdKey && (
-            <div className="p-4 border-b border-gray-200 dark:border-gray-700 space-y-4">
-              <h3 className="font-medium text-gray-900 dark:text-white">Create New API Key</h3>
+            <div className="p-4 border-b border-border space-y-4">
+              <h3 className="font-medium text-main">Create New API Key</h3>
 
               {/* Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-secondary mb-1">
                   Name
                 </label>
                 <input
@@ -208,32 +208,32 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
                   value={newKeyName}
                   onChange={(e) => setNewKeyName(e.target.value)}
                   placeholder="My API Key"
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
 
               {/* Scopes */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-secondary mb-2">
                   Permissions
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   {scopes.map((scope) => (
                     <label
                       key={scope.id}
-                      className="flex items-center gap-2 p-2 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                      className="flex items-center gap-2 p-2 border border-border rounded-lg cursor-pointer hover:bg-surface-hover/50"
                     >
                       <input
                         type="checkbox"
                         checked={newKeyScopes.includes(scope.id)}
                         onChange={() => toggleScope(scope.id)}
-                        className="w-4 h-4 text-indigo-600 rounded border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
+                        className="w-4 h-4 text-indigo-600 rounded border-border focus:ring-indigo-500"
                       />
                       <div>
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">
+                        <div className="text-sm font-medium text-main">
                           {scope.id}
                         </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                        <div className="text-xs text-secondary">
                           {scope.description}
                         </div>
                       </div>
@@ -244,7 +244,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
 
               {/* Expiration */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-secondary mb-1">
                   Expiration
                 </label>
                 <select
@@ -252,7 +252,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
                   onChange={(e) =>
                     setNewKeyExpiresDays(e.target.value === "never" ? null : Number(e.target.value))
                   }
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
                   <option value="never">Never expires</option>
                   <option value="7">7 days</option>
@@ -264,7 +264,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
 
               {/* Rate Limit */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="block text-sm font-medium text-secondary mb-1">
                   Rate Limit (requests/hour)
                 </label>
                 <input
@@ -273,7 +273,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
                   onChange={(e) => setNewKeyRateLimit(Number(e.target.value))}
                   min={1}
                   max={10000}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-surface text-main focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
 
@@ -288,7 +288,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
                 </button>
                 <button
                   onClick={() => setShowCreateForm(false)}
-                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                  className="px-4 py-2 text-secondary hover:bg-surface-hover rounded-lg transition-colors"
                 >
                   Cancel
                 </button>
@@ -298,9 +298,9 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
 
           {/* Keys list */}
           <div className="p-4">
-            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Your API Keys</h3>
+            <h3 className="text-sm font-medium text-secondary mb-3">Your API Keys</h3>
             {keys.length === 0 ? (
-              <p className="text-gray-500 dark:text-gray-400 text-sm">No API keys created yet.</p>
+              <p className="text-secondary text-sm">No API keys created yet.</p>
             ) : (
               <div className="space-y-3">
                 {keys.map((key) => (
@@ -308,15 +308,15 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
                     key={key._id}
                     className={`p-4 border rounded-lg ${
                       key.isActive
-                        ? "border-gray-200 dark:border-gray-700"
-                        : "border-gray-200 dark:border-gray-700 opacity-60"
+                        ? "border-border"
+                        : "border-border opacity-60"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-gray-900 dark:text-white">{key.name}</span>
+                        <span className="font-medium text-main">{key.name}</span>
                         {!key.isActive && (
-                          <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded">
+                          <span className="px-2 py-0.5 bg-gray-100 dark:bg-surface-hover text-secondary text-xs rounded">
                             Disabled
                           </span>
                         )}
@@ -331,7 +331,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
                           onClick={() => handleToggleActive(key._id, key.isActive)}
                           className={`px-3 py-1 text-sm rounded ${
                             key.isActive
-                              ? "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                              ? "bg-gray-100 dark:bg-surface-hover text-secondary hover:bg-gray-200 dark:hover:bg-gray-600"
                               : "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-green-200"
                           }`}
                         >
@@ -345,7 +345,7 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
                         </button>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center gap-4 text-sm text-secondary">
                       <span className="font-mono">{key.keyPrefix}...</span>
                       <span>Rate: {key.rateLimit}/hr</span>
                       {key.lastUsedAt && (
@@ -374,18 +374,18 @@ export default function APIKeysModal({ onClose }: APIKeysModalProps) {
           </div>
 
           {/* API Documentation Link */}
-          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Using the API</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <div className="p-4 border-t border-border">
+            <h3 className="text-sm font-medium text-secondary mb-2">Using the API</h3>
+            <p className="text-sm text-secondary mb-2">
               Include your API key in the request header:
             </p>
-            <code className="block bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm font-mono text-gray-800 dark:text-gray-200">
+            <code className="block bg-gray-100 dark:bg-surface-hover p-3 rounded text-sm font-mono text-gray-800 dark:text-gray-200">
               X-API-Key: ds_your_api_key_here
             </code>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            <p className="text-sm text-secondary mt-2">
               Or use the Authorization header:
             </p>
-            <code className="block bg-gray-100 dark:bg-gray-700 p-3 rounded text-sm font-mono text-gray-800 dark:text-gray-200">
+            <code className="block bg-gray-100 dark:bg-surface-hover p-3 rounded text-sm font-mono text-gray-800 dark:text-gray-200">
               Authorization: Bearer ds_your_api_key_here
             </code>
           </div>

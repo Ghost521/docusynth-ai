@@ -188,7 +188,7 @@ const PortalBuilder: React.FC<PortalBuilderProps> = ({
   ] as const;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm">
       <div className="bg-surface rounded-xl border border-border shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border">
@@ -569,14 +569,14 @@ const PortalBuilder: React.FC<PortalBuilderProps> = ({
                   <label className="block text-sm font-medium text-main mb-2">
                     Search Engine Preview
                   </label>
-                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-border">
+                  <div className="p-4 bg-background rounded-lg border border-border">
                     <div className="text-blue-600 dark:text-blue-400 text-lg hover:underline cursor-pointer">
                       {seoTitle || name || 'Documentation'}
                     </div>
                     <div className="text-green-700 dark:text-green-500 text-sm">
                       {subdomain ? `${subdomain}.docusynth.io` : 'your-docs.docusynth.io'}
                     </div>
-                    <div className="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                    <div className="text-secondary text-sm mt-1">
                       {seoDescription || 'Your documentation description will appear here...'}
                     </div>
                   </div>

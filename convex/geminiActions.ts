@@ -3,7 +3,7 @@
 import { action, internalAction } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { v } from "convex/values";
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 import {
   generateContent,
   selectProvider,
@@ -12,6 +12,7 @@ import {
   GenerationRequest,
   AIProvider,
 } from "./aiProvider";
+import { extractLinks, normalizeUrl } from "./crawlerUtils";
 
 function getGeminiApiKey(): string {
   const key = process.env.GEMINI_API_KEY;
@@ -188,6 +189,49 @@ export const discoverLinks = action({
 
     const isGitHub = url.toLowerCase().includes("github.com");
 
+    // Step 1: Try direct HTML fetch for non-GitHub URLs
+    if (!isGitHub) {
+      try {
+        const resp = await fetch(url, {
+          headers: {
+            "User-Agent": "Mozilla/5.0 (compatible; DocuSynth/1.0)",
+            "Accept": "text/html",
+          },
+          redirect: "follow",
+        });
+        if (resp.ok) {
+          const html = await resp.text();
+          const baseUrl = new URL(url).origin;
+          const rawLinks = extractLinks(html, url);
+          const seen = new Set<string>();
+          const links = rawLinks
+            .map((u) => normalizeUrl(u))
+            .filter((u) => {
+              if (!u || seen.has(u)) return false;
+              seen.add(u);
+              try {
+                return new URL(u).origin === baseUrl;
+              } catch {
+                return false;
+              }
+            })
+            .slice(0, maxPagesVal)
+            .map((u) => ({
+              title: u.split("/").filter(Boolean).pop()?.replace(/\.\w+$/, "") || "Untitled",
+              url: u,
+            }));
+          console.log("[discoverLinks] Direct fetch found", links.length, "links");
+          if (links.length >= 3) {
+            return { links };
+          }
+          // Too few links, fall through to Gemini
+        }
+      } catch (e) {
+        console.log("[discoverLinks] Direct fetch failed, falling back to Gemini:", e);
+      }
+    }
+
+    // Step 2: Fall back to Gemini Google Search
     let prompt = "";
 
     if (isGitHub) {
@@ -233,39 +277,47 @@ export const discoverLinks = action({
 
     const response = await ai.models.generateContent({
       model,
-      contents: prompt,
+      contents: prompt + `\n\nIMPORTANT: Return your response as a JSON object with a "links" array. Each link should have "title" (string) and "url" (string) properties. Return ONLY the JSON, no markdown fences.`,
       config: {
         tools: [{ googleSearch: {} }],
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            links: {
-              type: Type.ARRAY,
-              items: {
-                type: Type.OBJECT,
-                properties: {
-                  title: {
-                    type: Type.STRING,
-                    description: "The descriptive title of the page or file",
-                  },
-                  url: {
-                    type: Type.STRING,
-                    description: "The absolute URL",
-                  },
-                },
-              },
-            },
-          },
-        },
       },
     });
 
-    const jsonText = response.text;
-    if (!jsonText) return { links: [] };
+    const rawText = response.text?.trim();
+    console.log("[discoverLinks] rawText length:", rawText?.length ?? 0);
+    if (!rawText) return { links: [] };
 
-    const data = JSON.parse(jsonText);
-    return { links: data.links || [] };
+    // Extract JSON from response (may be wrapped in markdown code fences)
+    const jsonMatch = rawText.match(/```(?:json)?\s*([\s\S]*?)```/);
+    const jsonText = jsonMatch ? jsonMatch[1]?.trim() : rawText;
+
+    try {
+      const data = JSON.parse(jsonText || "{}");
+      // Handle various response shapes: { links: [...] }, { results: [...] }, { pages: [...] }, or raw array
+      const rawLinks = Array.isArray(data) ? data : (data.links || data.results || data.pages || data.urls || []);
+      const links = rawLinks
+        .filter((l: any) => {
+          if (!l || typeof l !== "object") return false;
+          const u = l.url || l.link || l.href;
+          return u && typeof u === "string" && u.startsWith("http");
+        })
+        .map((l: any) => ({
+          title: l.title || l.name || l.label || l.description || (l.url || l.link || l.href).split("/").filter(Boolean).pop() || "Untitled",
+          url: l.url || l.link || l.href,
+        }));
+      console.log("[discoverLinks] parsed links count:", links.length);
+      return { links };
+    } catch (e) {
+      console.log("[discoverLinks] JSON parse failed, extracting URLs from text");
+      // Try to extract any URLs from the text as fallback
+      const urlRegex = /https?:\/\/[^\s"'<>\])+,]+/g;
+      const urls = rawText.match(urlRegex) || [];
+      const links = urls
+        .filter((u: string) => !u.includes("google.com") && !u.includes("googleapis.com"))
+        .map((u: string) => ({ title: u.split("/").pop() || u, url: u }));
+      console.log("[discoverLinks] extracted URLs count:", links.length);
+      return { links };
+    }
   },
 });
 

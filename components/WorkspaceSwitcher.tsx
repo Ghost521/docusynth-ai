@@ -77,7 +77,7 @@ export default function WorkspaceSwitcher({
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 w-full rounded-lg bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 transition-colors"
+        className="flex items-center gap-2 px-3 py-2 w-full rounded-lg bg-gray-800/50 hover:bg-gray-700/50 border border-border/50 transition-colors"
       >
         {currentWorkspace ? (
           <>
@@ -109,9 +109,9 @@ export default function WorkspaceSwitcher({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 overflow-hidden">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-xl z-50 overflow-hidden">
           {/* Personal Workspace */}
-          <div className="p-2 border-b border-gray-700/50">
+          <div className="p-2 border-b border-border/50">
             <button
               onClick={() => {
                 onWorkspaceChange(null);
@@ -138,7 +138,7 @@ export default function WorkspaceSwitcher({
 
           {/* Team Workspaces */}
           {workspaces && workspaces.length > 0 && (
-            <div className="p-2 border-b border-gray-700/50">
+            <div className="p-2 border-b border-border/50">
               <div className="px-3 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Team Workspaces
               </div>
@@ -194,7 +194,7 @@ export default function WorkspaceSwitcher({
 
           {/* Pending Invitations */}
           {invitations && invitations.length > 0 && (
-            <div className="p-2 border-b border-gray-700/50">
+            <div className="p-2 border-b border-border/50">
               <div className="px-3 py-1 text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Pending Invitations
               </div>

@@ -259,11 +259,11 @@ const SemanticSearchModal: React.FC<SemanticSearchModalProps> = ({
   return (
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh]">
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-md animate-fadeIn"
+        className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md animate-fadeIn"
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-2xl bg-surface border border-border rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+      <div className="relative w-full max-w-2xl bg-surface border border-border rounded-2xl shadow-2xl overflow-hidden animate-scaleIn">
         {/* Search Mode Tabs */}
         <div className="flex items-center gap-1 p-2 border-b border-border bg-surface-hover/30">
           {(['hybrid', 'semantic', 'keyword'] as SearchMode[]).map((mode) => (

@@ -70,8 +70,8 @@ const MCPModal: React.FC<MCPModalProps> = ({ isOpen, onClose, projectName, serve
 
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-md animate-fadeIn" onClick={onClose} />
-      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-4xl w-full flex flex-col h-[85vh] overflow-hidden animate-fadeIn">
+      <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md animate-fadeIn" onClick={onClose} />
+      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-4xl w-full flex flex-col h-[85vh] overflow-hidden animate-scaleIn">
         {/* Header */}
         <div className="p-6 border-b border-border flex items-center justify-between bg-surface-hover/20">
           <div className="flex items-center gap-3">

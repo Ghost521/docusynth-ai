@@ -31,7 +31,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       />
       
       {/* Modal Card */}
-      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-fadeIn scale-100 transition-all duration-300">
+      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-scaleIn transition-all duration-300">
         <div className="p-6">
           <div className="flex items-start gap-4">
             <div className={`p-3 rounded-xl shrink-0 ${variant === 'danger' ? 'bg-red-500/10 text-red-500' : 'bg-primary/10 text-primary'}`}>

@@ -32,12 +32,22 @@
             colors: {
               background: 'var(--bg-color)',
               surface: 'var(--surface-color)',
+              'surface-elevated': 'var(--surface-elevated)',
+              'surface-sunken': 'var(--surface-sunken)',
               primary: 'var(--primary-color)',
               'primary-hover': 'var(--primary-hover)',
+              'primary-muted': 'var(--primary-muted)',
               secondary: 'var(--text-secondary)',
+              tertiary: 'var(--text-tertiary)',
               main: 'var(--text-main)',
               border: 'var(--border-color)',
+              'border-strong': 'var(--border-strong)',
               'surface-hover': 'var(--surface-hover)',
+            },
+            boxShadow: {
+              'theme-sm': 'var(--shadow-sm)',
+              'theme-md': 'var(--shadow-md)',
+              'theme-lg': 'var(--shadow-lg)',
             },
             fontFamily: {
               sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
@@ -46,12 +56,35 @@
             animation: {
               fadeIn: 'fadeIn 0.2s ease-out',
               pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              shake: 'shake 0.4s ease-in-out',
+              scaleIn: 'scaleIn 0.2s ease-out',
+              scaleOut: 'scaleOut 0.15s ease-in forwards',
+              slideUp: 'slideUp 0.3s ease-out',
             },
             keyframes: {
               fadeIn: {
                 '0%': { opacity: '0', transform: 'translateY(4px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
+              },
+              shake: {
+                '0%, 100%': { transform: 'translateX(0)' },
+                '20%': { transform: 'translateX(-6px)' },
+                '40%': { transform: 'translateX(6px)' },
+                '60%': { transform: 'translateX(-4px)' },
+                '80%': { transform: 'translateX(4px)' },
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.95)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+              scaleOut: {
+                '0%': { opacity: '1', transform: 'scale(1)' },
+                '100%': { opacity: '0', transform: 'scale(0.95)' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(8px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
             }
           }
         }
@@ -60,33 +93,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
       :root {
-        --bg-color: #ffffff;
-        --surface-color: #f9fafb;
-        --surface-hover: #f3f4f6;
-        --text-main: #111827;
-        --text-secondary: #374151; /* Gray 700: Contrast 9.2:1 - AA/AAA Pass */
-        --border-color: #9ca3af;   /* Gray 400: Clearer separation */
-        --primary-color: #065f46;  /* Emerald 800: High contrast on white bg */
-        --primary-hover: #064e3b;
+        --bg-color: #f8fafc;        /* Slate 50: Warmer than pure white */
+        --surface-color: #ffffff;    /* Pure white cards on off-white bg */
+        --surface-hover: #f1f5f9;   /* Slate 100: Visible hover on white surface */
+        --surface-elevated: #ffffff; /* Elevated surfaces (modals, popovers) */
+        --surface-sunken: #f1f5f9;  /* Inset/recessed areas */
+        --text-main: #0f172a;       /* Slate 900: Deep readable text */
+        --text-secondary: #475569;  /* Slate 600: Softer secondary, still AA contrast */
+        --text-tertiary: #94a3b8;   /* Slate 400: Placeholders, muted hints */
+        --border-color: #e2e8f0;    /* Slate 200: Subtle, clean borders */
+        --border-strong: #cbd5e1;   /* Slate 300: Emphasized borders */
+        --primary-color: #059669;   /* Emerald 600: Rich but not as heavy as 800 */
+        --primary-hover: #047857;   /* Emerald 700 */
+        --primary-muted: #d1fae5;   /* Emerald 100: Muted bg tint */
+        --shadow-color: 0 0% 63%;   /* HSL for shadow composition */
+        --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.06), 0 1px 3px hsl(var(--shadow-color) / 0.1);
+        --shadow-md: 0 2px 4px hsl(var(--shadow-color) / 0.06), 0 4px 12px hsl(var(--shadow-color) / 0.08);
+        --shadow-lg: 0 4px 6px hsl(var(--shadow-color) / 0.05), 0 10px 24px hsl(var(--shadow-color) / 0.1);
+        --overlay-color: rgba(15, 23, 42, 0.4); /* Lighter overlay in light mode */
+        --code-bg: #1e293b;          /* Slate 800: Code block bg */
+        --code-chrome: #0f172a;      /* Slate 900: Code block header */
       }
 
       :root.dark {
-        --bg-color: #0b0c0e;
-        --surface-color: #14161a;
-        --surface-hover: #1c1f24;
-        --text-main: #f9fafb;
-        --text-secondary: #d1d5db; /* Gray 300: High contrast on dark bg */
-        --border-color: #374151;
-        --primary-color: #10b981;  /* Emerald 500: Vibrant but high contrast on dark bg */
-        --primary-hover: #34d399;
+        --bg-color: #0c0d10;         /* Near-black with slight blue tint */
+        --surface-color: #151820;    /* Slightly lighter, blue-tinted surface */
+        --surface-hover: #1e2230;    /* Visible hover with blue undertone */
+        --surface-elevated: #1a1e2a; /* Elevated surfaces (modals) */
+        --surface-sunken: #0a0b0e;   /* Deeper recessed areas */
+        --text-main: #f1f5f9;        /* Slate 100: Clean white text */
+        --text-secondary: #94a3b8;   /* Slate 400: Balanced secondary */
+        --text-tertiary: #475569;    /* Slate 600: Muted hints */
+        --border-color: #1e293b;     /* Slate 800: Subtle dark border */
+        --border-strong: #334155;    /* Slate 700: Emphasized borders */
+        --primary-color: #10b981;    /* Emerald 500: Vibrant on dark bg */
+        --primary-hover: #34d399;    /* Emerald 400 */
+        --primary-muted: #064e3b;    /* Emerald 950: Dark tint */
+        --shadow-color: 0 0% 0%;    /* Pure black shadows for dark mode */
+        --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.3), 0 1px 3px hsl(var(--shadow-color) / 0.2);
+        --shadow-md: 0 2px 4px hsl(var(--shadow-color) / 0.3), 0 4px 12px hsl(var(--shadow-color) / 0.25);
+        --shadow-lg: 0 4px 6px hsl(var(--shadow-color) / 0.25), 0 10px 24px hsl(var(--shadow-color) / 0.35);
+        --overlay-color: rgba(0, 0, 0, 0.6);
+        --code-bg: #0f172a;          /* Slate 900: Code block bg */
+        --code-chrome: #020617;      /* Slate 950: Code block header */
       }
 
       body {
         background-color: var(--bg-color);
         color: var(--text-main);
-        transition: background-color 0.2s, color 0.2s;
+        transition: background-color 0.3s ease, color 0.3s ease;
         -webkit-font-smoothing: antialiased;
         font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+      }
+
+      /* Smooth theme transitions on key elements */
+      *, *::before, *::after {
+        transition-property: background-color, border-color, box-shadow;
+        transition-duration: 0.2s;
+        transition-timing-function: ease;
+      }
+      /* Exclude elements that need instant transitions */
+      .no-theme-transition, .no-theme-transition * {
+        transition-property: none !important;
       }
 
       ::-webkit-scrollbar {
@@ -97,11 +165,11 @@
         background: transparent; 
       }
       ::-webkit-scrollbar-thumb {
-        background: var(--border-color); 
+        background: var(--border-strong);
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: var(--text-secondary); 
+        background: var(--text-tertiary);
       }
       
       .prose pre {

@@ -288,7 +288,7 @@ const PortalDocument: React.FC<PortalDocumentProps> = ({
               th: ({ node, ...props }) => (
                 <th
                   className={`px-4 py-2 text-left font-semibold border-b ${
-                    isDark ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'
+                    isDark ? 'bg-gray-800 border-border' : 'bg-gray-50 border-gray-200'
                   }`}
                   {...props}
                 />
@@ -296,7 +296,7 @@ const PortalDocument: React.FC<PortalDocumentProps> = ({
               td: ({ node, ...props }) => (
                 <td
                   className={`px-4 py-2 border-b ${
-                    isDark ? 'border-gray-700' : 'border-gray-200'
+                    isDark ? 'border-border' : 'border-gray-200'
                   }`}
                   {...props}
                 />
@@ -309,7 +309,7 @@ const PortalDocument: React.FC<PortalDocumentProps> = ({
 
         {/* Sources */}
         {sources && sources.length > 0 && (
-          <div className={`mt-12 pt-8 border-t ${isDark ? 'border-gray-700' : 'border-gray-200'}`}>
+          <div className={`mt-12 pt-8 border-t ${isDark ? 'border-border' : 'border-gray-200'}`}>
             <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
               Sources
             </h3>
@@ -336,7 +336,7 @@ const PortalDocument: React.FC<PortalDocumentProps> = ({
         {navigation && (navigation.prev || navigation.next) && (
           <div
             className={`mt-12 pt-8 border-t flex items-center justify-between gap-4 ${
-              isDark ? 'border-gray-700' : 'border-gray-200'
+              isDark ? 'border-border' : 'border-gray-200'
             }`}
           >
             {navigation.prev ? (
@@ -344,7 +344,7 @@ const PortalDocument: React.FC<PortalDocumentProps> = ({
                 onClick={() => onNavigate(navigation.prev!.slug)}
                 className={`flex-1 max-w-xs p-4 rounded-xl border text-left transition-colors ${
                   isDark
-                    ? 'border-gray-700 hover:bg-gray-800'
+                    ? 'border-border hover:bg-gray-800'
                     : 'border-gray-200 hover:bg-gray-50'
                 }`}
               >
@@ -367,7 +367,7 @@ const PortalDocument: React.FC<PortalDocumentProps> = ({
                 onClick={() => onNavigate(navigation.next!.slug)}
                 className={`flex-1 max-w-xs p-4 rounded-xl border text-right transition-colors ${
                   isDark
-                    ? 'border-gray-700 hover:bg-gray-800'
+                    ? 'border-border hover:bg-gray-800'
                     : 'border-gray-200 hover:bg-gray-50'
                 }`}
               >

@@ -184,7 +184,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, onConfirm 
         onClick={onClose} 
       />
       
-      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden animate-fadeIn transition-all">
+      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden animate-scaleIn transition-all">
         <form onSubmit={handleSubmit}>
           <div className="p-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
             <header className="flex items-center justify-between mb-6 sticky top-0 bg-surface z-10 pb-2 border-b border-border/50">

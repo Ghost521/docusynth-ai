@@ -597,7 +597,7 @@ function extractStructuredData(html: string): Record<string, unknown> | undefine
 /**
  * Extract all links from HTML
  */
-function extractLinks(html: string, baseUrl: string): string[] {
+export function extractLinks(html: string, baseUrl: string): string[] {
   const links: Set<string> = new Set();
   const linkMatches = html.matchAll(/<a[^>]*href=["']([^"'#]+)["'][^>]*>/gi);
 

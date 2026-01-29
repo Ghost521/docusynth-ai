@@ -423,7 +423,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                   <>
                     <button
                         onClick={() => setIsEditing(true)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-white/5 hover:bg-surface-hover rounded-md transition-colors"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover rounded-md transition-colors"
                         title="Edit Content"
                     >
                         <Icons.Edit className="w-3.5 h-3.5" />
@@ -432,7 +432,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                     <button 
                         onClick={handleShare}
                         className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
-                          shareCopied ? 'bg-primary text-white shadow-lg' : 'text-secondary hover:text-main bg-white/5 hover:bg-surface-hover'
+                          shareCopied ? 'bg-primary text-white shadow-lg' : 'text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover'
                         }`}
                         title="Generate and copy public share link"
                     >
@@ -448,7 +448,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                   <>
                     <button
                         onClick={onPushToGitHub}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-white/5 hover:bg-surface-hover rounded-md transition-colors"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover rounded-md transition-colors"
                         title="Push to GitHub"
                     >
                         <Icons.GitHub className="w-3.5 h-3.5" />
@@ -458,7 +458,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                     {onOpenSchedule && (
                       <button
                           onClick={onOpenSchedule}
-                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-white/5 hover:bg-surface-hover rounded-md transition-colors"
+                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover rounded-md transition-colors"
                           title="Schedule automatic updates"
                       >
                           <Icons.Clock className="w-3.5 h-3.5" />
@@ -469,7 +469,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                     {onOpenComments && (
                       <button
                           onClick={() => onOpenComments()}
-                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-white/5 hover:bg-surface-hover rounded-md transition-colors"
+                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover rounded-md transition-colors"
                           title="View and add comments"
                       >
                           <Icons.MessageSquare className="w-3.5 h-3.5" />
@@ -479,7 +479,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
 
                     <button
                         onClick={() => onRefresh(doc)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-white/5 hover:bg-surface-hover rounded-md transition-colors"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover rounded-md transition-colors"
                         title="Refresh (Synthesize Latest Updates)"
                     >
                         <Icons.Refresh className="w-3.5 h-3.5" />
@@ -487,7 +487,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                     </button>
                     <button 
                         onClick={() => setShowHistory(true)}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${showHistory ? 'bg-primary text-white' : 'text-secondary hover:text-main bg-white/5 hover:bg-surface-hover'}`}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${showHistory ? 'bg-primary text-white' : 'text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover'}`}
                         title="Version History"
                     >
                         <Icons.History className="w-3.5 h-3.5" />
@@ -500,7 +500,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                 <button 
                     onClick={handleSummarize}
                     disabled={isSummarizing}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${showSummaryModal ? 'bg-primary text-white' : 'text-secondary hover:text-main bg-white/5 hover:bg-surface-hover'}`}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${showSummaryModal ? 'bg-primary text-white' : 'text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover'}`}
                     title="Generate Executive Summary"
                 >
                     {isSummarizing ? (
@@ -513,7 +513,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
 
                 <button 
                     onClick={() => setShowIntegrations(!showIntegrations)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${showIntegrations ? 'bg-primary text-white' : 'text-secondary hover:text-main bg-white/5 hover:bg-surface-hover'}`}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${showIntegrations ? 'bg-primary text-white' : 'text-secondary hover:text-main bg-surface-hover/50 hover:bg-surface-hover'}`}
                     title="Direct Integrations"
                 >
                     <Icons.Zap className="w-3.5 h-3.5" />
@@ -522,7 +522,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                 <button 
                     onClick={handleCopy}
                     className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                        copied ? 'bg-green-500/20 text-green-600 dark:text-green-400' : 'bg-primary/20 text-blue-600 dark:text-blue-400 hover:bg-primary/30'
+                        copied ? 'bg-green-500/20 text-green-600 dark:text-green-400' : 'bg-primary/10 text-primary hover:bg-primary/20'
                     }`}
                 >
                     {copied ? <Icons.Check className="w-3.5 h-3.5" /> : <Icons.Copy className="w-3.5 h-3.5" />}
@@ -530,6 +530,29 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                 </button>
               </>
             )}
+        </div>
+      </div>
+
+      {/* Metadata Bar */}
+      <div className="flex items-center gap-4 px-6 py-2 bg-surface-hover/30 border-b border-border text-[10px]">
+        <div className="flex items-center gap-1.5 text-secondary">
+          <Icons.FileText className="w-3 h-3" />
+          <span className="font-medium">{Math.ceil(doc.content.split(/\s+/).length * 1.3).toLocaleString()} tokens</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-secondary">
+          <Icons.Clock className="w-3 h-3" />
+          <span className="font-medium">{new Date(doc.createdAt).toLocaleDateString()}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-secondary">
+          <Icons.History className="w-3 h-3" />
+          <span className="font-medium">{doc.versions?.length || 1} version{(doc.versions?.length || 1) !== 1 ? 's' : ''}</span>
+        </div>
+        <div className="flex items-center gap-1.5 text-secondary">
+          <Icons.Globe className="w-3 h-3" />
+          <span className="font-medium">{doc.sources?.length || 0} source{(doc.sources?.length || 0) !== 1 ? 's' : ''}</span>
+        </div>
+        <div className="ml-auto">
+          <span className="px-2 py-0.5 bg-surface border border-border rounded font-mono font-bold text-secondary uppercase">{format === 'markdown' ? 'MD' : format}</span>
         </div>
       </div>
 
@@ -773,16 +796,16 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                 </div>
               )}
               {format === 'markdown' ? (
-                 <div className="prose prose-sm max-w-none font-mono dark:prose-invert">
+                 <div className="prose prose-sm max-w-none dark:prose-invert">
                   <ReactMarkdown
                       components={{
-                          h1: ({node, ...props}) => <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-6 pb-2 border-b border-border" {...props} />,
-                          h2: ({node, ...props}) => <h2 className="text-xl font-bold text-blue-500 dark:text-blue-300 mt-8 mb-4" {...props} />,
+                          h1: ({node, ...props}) => <h1 className="text-2xl font-extrabold text-main mb-6 pb-3 border-b-2 border-border" {...props} />,
+                          h2: ({node, ...props}) => <h2 className="text-xl font-bold text-primary mt-8 mb-4" {...props} />,
                           h3: ({node, ...props}) => <h3 className="text-lg font-semibold text-main mt-6 mb-3" {...props} />,
-                          p: ({node, ...props}) => <p className="text-secondary leading-relaxed mb-4" {...props} />,
+                          p: ({node, ...props}) => <p className="text-main/85 leading-relaxed mb-4" {...props} />,
                           ul: ({node, ...props}) => <ul className="list-disc list-outside ml-4 mb-4 text-secondary space-y-1" {...props} />,
                           ol: ({node, ...props}) => <ol className="list-decimal list-outside ml-4 mb-4 text-secondary space-y-1" {...props} />,
-                          blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary/50 pl-4 py-1 my-4 bg-primary/5 italic text-secondary" {...props} />,
+                          blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 py-2 my-4 bg-primary/5 italic text-secondary rounded-r-lg" {...props} />,
                           a: ({node, ...props}) => <a className="text-blue-500 hover:text-blue-400 underline underline-offset-4" target="_blank" rel="noopener noreferrer" {...props} />,
                           code: ({node, inline, className, children, ...props}: any) => {
                               const match = /language-(\w+)/.exec(className || '');
@@ -797,21 +820,21 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
 
                               if (isBlock) {
                                   return (
-                                      <div className="relative group my-6 rounded-xl overflow-hidden border border-border shadow-sm">
-                                          <div className="flex items-center justify-between px-4 py-2 bg-[#1e1e1e] border-b border-white/10">
+                                      <div className="relative group my-6 rounded-xl overflow-hidden border border-border shadow-theme-sm">
+                                          <div className="flex items-center justify-between px-4 py-2 border-b border-border" style={{ background: 'var(--code-chrome)' }}>
                                               <div className="flex items-center gap-2">
                                                   <div className="flex gap-1.5">
-                                                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
-                                                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
-                                                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
+                                                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                                                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                                                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
                                                   </div>
-                                                  <span className="text-[10px] text-zinc-400 font-sans uppercase tracking-wider ml-2">
+                                                  <span className="text-[10px] text-tertiary font-sans uppercase tracking-wider ml-2">
                                                     {match ? match[1] : 'code'}
                                                   </span>
                                               </div>
-                                              <button 
+                                              <button
                                                   onClick={handleCodeCopy}
-                                                  className="text-[10px] text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 bg-white/5 hover:bg-white/10 px-2 py-1 rounded"
+                                                  className="text-[10px] text-tertiary hover:text-main transition-colors flex items-center gap-1.5 bg-surface-hover/50 hover:bg-surface-hover px-2 py-1 rounded"
                                               >
                                                   {isCodeCopied ? <Icons.Check className="w-3 h-3 text-green-400" /> : <Icons.Copy className="w-3.5 h-3.5" />}
                                                   {isCodeCopied ? 'Snippet Copied' : 'Copy Snippet'}
@@ -828,7 +851,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                                                   borderTopRightRadius: 0,
                                                   borderBottomLeftRadius: '0.75rem',
                                                   borderBottomRightRadius: '0.75rem',
-                                                  background: '#18181b', // Zinc 900
+                                                  background: 'var(--code-bg)',
                                                   padding: '1.25rem',
                                                   fontSize: '0.85rem',
                                                   lineHeight: '1.6',
@@ -844,7 +867,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                               }
 
                               return (
-                                  <code className="bg-surface-hover text-orange-600 dark:text-orange-300 px-1.5 py-0.5 rounded text-sm font-mono border border-border/50" {...props}>
+                                  <code className="bg-surface-hover text-primary px-1.5 py-0.5 rounded text-sm font-mono border border-border/50" {...props}>
                                       {children}
                                   </code>
                               );
@@ -862,7 +885,7 @@ const MarkdownViewer: React.FC<MarkdownViewerProps> = ({
                         customStyle={{ 
                             margin: 0, 
                             height: '100%',
-                            background: '#18181b', 
+                            background: 'var(--code-bg)',
                             padding: '1.5rem',
                             fontSize: '0.9rem',
                             lineHeight: '1.6',

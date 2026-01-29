@@ -48,7 +48,7 @@ export default function WorkspaceSettingsModal({
   if (!workspace) {
     return (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div className="bg-gray-900 rounded-xl p-8">
+        <div className="bg-background rounded-xl p-8">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
         </div>
       </div>
@@ -156,9 +156,9 @@ export default function WorkspaceSettingsModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-900 rounded-xl border border-gray-700 w-full max-w-3xl max-h-[90vh] flex flex-col">
+      <div className="bg-background rounded-xl border border-border w-full max-w-3xl max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-700">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
               {workspace.name.charAt(0).toUpperCase()}
@@ -177,7 +177,7 @@ export default function WorkspaceSettingsModal({
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-gray-700 px-6">
+        <div className="flex border-b border-border px-6">
           {tabs.map((tab) => {
             const Icon = Icons[tab.icon];
             return (
@@ -211,7 +211,7 @@ export default function WorkspaceSettingsModal({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   disabled={!isAdmin}
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50"
+                  className="w-full px-4 py-2 bg-gray-800 border border-border rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50"
                 />
               </div>
 
@@ -224,7 +224,7 @@ export default function WorkspaceSettingsModal({
                   onChange={(e) => setDescription(e.target.value)}
                   disabled={!isAdmin}
                   rows={3}
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 resize-none"
+                  className="w-full px-4 py-2 bg-gray-800 border border-border rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 resize-none"
                   placeholder="Describe your workspace..."
                 />
               </div>
@@ -258,7 +258,7 @@ export default function WorkspaceSettingsModal({
               </div>
 
               {isAdmin && (
-                <div className="flex justify-between items-center pt-4 border-t border-gray-700">
+                <div className="flex justify-between items-center pt-4 border-t border-border">
                   <button
                     onClick={handleSave}
                     disabled={isSaving}
@@ -286,7 +286,7 @@ export default function WorkspaceSettingsModal({
               {members?.map((member) => (
                 <div
                   key={member._id}
-                  className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700/50"
+                  className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-lg border border-border/50"
                 >
                   <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
                     {member.userImage ? (
@@ -351,7 +351,7 @@ export default function WorkspaceSettingsModal({
             <div className="space-y-6">
               {/* Invite Form */}
               {isAdmin && (
-                <form onSubmit={handleInvite} className="flex gap-3 p-4 bg-gray-800/50 rounded-lg border border-gray-700/50">
+                <form onSubmit={handleInvite} className="flex gap-3 p-4 bg-gray-800/50 rounded-lg border border-border/50">
                   <input
                     type="email"
                     value={inviteEmail}
@@ -387,7 +387,7 @@ export default function WorkspaceSettingsModal({
                     {workspace.invitations.map((invitation) => (
                       <div
                         key={invitation._id}
-                        className="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50"
+                        className="flex items-center gap-4 p-3 bg-gray-800/50 rounded-lg border border-border/50"
                       >
                         <Icons.Mail className="w-5 h-5 text-gray-400" />
                         <div className="flex-1 min-w-0">
@@ -449,7 +449,7 @@ export default function WorkspaceSettingsModal({
         {/* Delete Confirmation Dialog */}
         {showDeleteConfirm && (
           <div className="absolute inset-0 bg-black/70 flex items-center justify-center rounded-xl">
-            <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 max-w-md">
+            <div className="bg-gray-800 p-6 rounded-xl border border-border max-w-md">
               <h3 className="text-lg font-semibold text-white mb-2">Delete Workspace?</h3>
               <p className="text-gray-400 text-sm mb-4">
                 This will permanently delete the workspace and remove all members.

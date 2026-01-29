@@ -69,7 +69,7 @@ export default function PresenceAvatars({
             )}
 
             {/* Tooltip */}
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
               {user.userName}
               {user.isEditing && (
                 <span className="ml-1 text-green-400">(editing)</span>
@@ -82,10 +82,10 @@ export default function PresenceAvatars({
         {/* Overflow count */}
         {remainingCount > 0 && (
           <div
-            className="w-8 h-8 rounded-full border-2 border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 flex items-center justify-center"
+            className="w-8 h-8 rounded-full border-2 border-border bg-gray-100 dark:bg-surface-hover flex items-center justify-center"
             title={`${remainingCount} more`}
           >
-            <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
+            <span className="text-xs font-medium text-secondary">
               +{remainingCount}
             </span>
           </div>
@@ -93,7 +93,7 @@ export default function PresenceAvatars({
       </div>
 
       {/* Active viewers label */}
-      <span className="ml-3 text-xs text-gray-500 dark:text-gray-400">
+      <span className="ml-3 text-xs text-secondary">
         {users.length === 1
           ? "1 viewer"
           : `${users.length} viewers`}

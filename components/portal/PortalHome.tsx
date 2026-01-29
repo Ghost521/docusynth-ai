@@ -98,7 +98,7 @@ const PortalHome: React.FC<PortalHomeProps> = ({
           onClick={onSearch}
           className={`mt-8 inline-flex items-center gap-3 px-6 py-3 rounded-xl border transition-all hover:shadow-lg ${
             isDark
-              ? 'bg-gray-800 border-gray-700 hover:border-gray-600'
+              ? 'bg-gray-800 border-border hover:border-gray-600'
               : 'bg-white border-gray-200 hover:border-gray-300 shadow-sm'
           }`}
         >
@@ -136,7 +136,7 @@ const PortalHome: React.FC<PortalHomeProps> = ({
                 onClick={() => onNavigate(doc.slug)}
                 className={`text-left p-5 rounded-xl border transition-all hover:shadow-lg ${
                   isDark
-                    ? 'bg-gray-800/50 border-gray-700 hover:bg-gray-800 hover:border-gray-600'
+                    ? 'bg-gray-800/50 border-border hover:bg-gray-800 hover:border-gray-600'
                     : 'bg-white border-gray-200 hover:border-gray-300 shadow-sm'
                 }`}
               >
@@ -190,7 +190,7 @@ const PortalHome: React.FC<PortalHomeProps> = ({
           <div
             className={`rounded-xl border divide-y ${
               isDark
-                ? 'bg-gray-800/50 border-gray-700 divide-gray-700'
+                ? 'bg-gray-800/50 border-border divide-gray-700'
                 : 'bg-white border-gray-200 divide-gray-100 shadow-sm'
             }`}
           >
@@ -252,7 +252,7 @@ const PortalHome: React.FC<PortalHomeProps> = ({
             onClick={onSearch}
             className={`p-4 rounded-xl border text-left transition-all ${
               isDark
-                ? 'border-gray-700 hover:bg-gray-800/50'
+                ? 'border-border hover:bg-gray-800/50'
                 : 'border-gray-200 hover:bg-gray-50'
             }`}
           >
@@ -277,7 +277,7 @@ const PortalHome: React.FC<PortalHomeProps> = ({
               onClick={() => onNavigate(featuredDocs[0].slug)}
               className={`p-4 rounded-xl border text-left transition-all ${
                 isDark
-                  ? 'border-gray-700 hover:bg-gray-800/50'
+                  ? 'border-border hover:bg-gray-800/50'
                   : 'border-gray-200 hover:bg-gray-50'
               }`}
             >
@@ -300,7 +300,7 @@ const PortalHome: React.FC<PortalHomeProps> = ({
 
           <div
             className={`p-4 rounded-xl border ${
-              isDark ? 'border-gray-700' : 'border-gray-200'
+              isDark ? 'border-border' : 'border-gray-200'
             }`}
           >
             <Icons.HelpCircle

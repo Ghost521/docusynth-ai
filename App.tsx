@@ -20,6 +20,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import LoadingScreen from './components/LoadingScreen';
 import { ToastContainer, ToastMessage } from './components/Toast';
 import { Icons } from './components/Icon';
+import Tooltip from './components/Tooltip';
 import { v4 as uuidv4 } from 'uuid';
 import JSZip from 'jszip';
 // Phase 2-5 Feature Components
@@ -55,6 +56,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [inputError, setInputError] = useState(false);
+  const [inputErrorMsg, setInputErrorMsg] = useState('');
+  const [inputShake, setInputShake] = useState(false);
 
   const [currentDocId, setCurrentDocId] = useState<Id<"documents"> | null>(null);
   const [activeProjectId, setActiveProjectId] = useState<Id<"projects"> | null>(null);
@@ -452,12 +455,23 @@ function App() {
     }
   };
 
+  const triggerInputError = (msg: string) => {
+    setInputError(true);
+    setInputErrorMsg(msg);
+    setInputShake(true);
+    setTimeout(() => setInputShake(false), 400);
+    setTimeout(() => { setInputError(false); setInputErrorMsg(''); }, 3000);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const trimmedInput = inputValue.trim();
-    if (!trimmedInput) return;
+    if (!trimmedInput) {
+      triggerInputError('Please enter a topic, URL, or repository.');
+      return;
+    }
     if (mode === 'crawl' && !isValidUrl(trimmedInput)) {
-      addToast('error', 'Invalid URL', 'Please provide a valid URL for crawling.');
+      triggerInputError('Please provide a valid URL for crawling.');
       return;
     }
     if (mode === 'crawl' && isAdvancedCrawl) {
@@ -533,7 +547,11 @@ function App() {
           depth: userSettings?.crawlDepth,
           excludePatterns: userSettings?.crawlExcludePatterns,
         });
-        setFoundLinks(result.links);
+        const links = result?.links ?? [];
+        if (links.length === 0) {
+          addToast('warning', 'No Links Found', 'Could not discover any links from that URL. Try a different page or check the URL.');
+        }
+        setFoundLinks(links);
         setLinkModalTitle(undefined);
         setShowLinkModal(true);
     } catch (error: any) {
@@ -969,7 +987,7 @@ function App() {
              {(currentDoc || showTaskView) && (
                <button
                   onClick={handleGoHome}
-                  className="hidden md:flex items-center gap-2 px-4 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-bold transition-all"
+                  className="hidden md:flex items-center gap-2 px-4 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-bold transition-all active:scale-[0.97]"
                >
                  <Icons.Plus className="w-3.5 h-3.5" />
                  New Synthesis
@@ -1013,35 +1031,42 @@ function App() {
              </button>
 
              {/* Chat Button */}
-             <button
-                onClick={() => setShowChat(true)}
-                className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all"
-                title="AI Chat (⌘J)"
-             >
-                <Icons.Sparkles className="w-5 h-5" />
-             </button>
+             <Tooltip label="AI Chat" shortcut="⌘J">
+               <button
+                  onClick={() => setShowChat(true)}
+                  className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
+                  aria-label="AI Chat"
+               >
+                  <Icons.Sparkles className="w-5 h-5" />
+               </button>
+             </Tooltip>
 
              {/* Templates Button */}
-             <button
-                onClick={() => setShowTemplateGallery(true)}
-                className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all"
-                title="Template Gallery"
-             >
-                <Icons.Folder className="w-5 h-5" />
-             </button>
+             <Tooltip label="Templates">
+               <button
+                  onClick={() => setShowTemplateGallery(true)}
+                  className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
+                  aria-label="Template Gallery"
+               >
+                  <Icons.Folder className="w-5 h-5" />
+               </button>
+             </Tooltip>
 
              {/* Analytics Button */}
-             <button
-                onClick={() => setShowAnalytics(true)}
-                className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all"
-                title="Analytics Dashboard"
-             >
-                <Icons.Chart className="w-5 h-5" />
-             </button>
+             <Tooltip label="Analytics">
+               <button
+                  onClick={() => setShowAnalytics(true)}
+                  className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
+                  aria-label="Analytics Dashboard"
+               >
+                  <Icons.Chart className="w-5 h-5" />
+               </button>
+             </Tooltip>
 
-             <button
-                onClick={() => {
-                    const shortcuts = `
+             <Tooltip label="Shortcuts">
+               <button
+                  onClick={() => {
+                      const shortcuts = `
 Keyboard Shortcuts:
 ⌘/Ctrl + K : Search Documents
 ⌘/Ctrl + J : AI Chat
@@ -1049,20 +1074,24 @@ Keyboard Shortcuts:
 ⌘/Ctrl + R : Refresh Content
 ⌘/Ctrl + C : Copy Full Document
 ⌘/Ctrl + D : Delete Document
-                    `;
-                    addToast('info', 'Keyboard Shortcuts', shortcuts);
-                }}
-                className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all"
-                title="Keyboard Shortcuts"
-                aria-label="View shortcuts"
-             >
-                <Icons.Keyboard className="w-5 h-5" />
-             </button>
+                      `;
+                      addToast('info', 'Keyboard Shortcuts', shortcuts);
+                  }}
+                  className="hidden sm:flex p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]"
+                  aria-label="View shortcuts"
+               >
+                  <Icons.Keyboard className="w-5 h-5" />
+               </button>
+             </Tooltip>
 
-             <button onClick={() => openSettings('local')} className="p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all" aria-label="Settings"><Icons.Settings className="w-5 h-5" /></button>
-             <button onClick={toggleTheme} className="p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all" aria-label="Toggle theme">
-                {theme === 'dark' ? <Icons.Sun className="w-5 h-5" /> : <Icons.Moon className="w-5 h-5" />}
-             </button>
+             <Tooltip label="Settings">
+               <button onClick={() => openSettings('local')} className="p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]" aria-label="Settings"><Icons.Settings className="w-5 h-5" /></button>
+             </Tooltip>
+             <Tooltip label={theme === 'dark' ? 'Light Mode' : 'Dark Mode'}>
+               <button onClick={toggleTheme} className="p-2 rounded-lg text-secondary hover:text-main hover:bg-surface-hover transition-all active:scale-[0.97]" aria-label="Toggle theme">
+                  {theme === 'dark' ? <Icons.Sun className="w-5 h-5" /> : <Icons.Moon className="w-5 h-5" />}
+               </button>
+             </Tooltip>
           </div>
         </header>
 
@@ -1096,20 +1125,32 @@ Keyboard Shortcuts:
                         </div>
 
                         <div className="w-full max-w-2xl bg-surface border border-border p-8 rounded-3xl shadow-xl shadow-black/5 dark:shadow-none">
-                            <div className="flex justify-center gap-2 mb-8">
-                                <button onClick={() => setMode('search')} className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all border ${mode === 'search' ? 'bg-primary text-white border-primary shadow-md' : 'text-secondary border-border hover:border-main'}`}><Icons.Search className="w-4 h-4" />Search</button>
-                                <button onClick={() => setMode('crawl')} className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all border ${mode === 'crawl' ? 'bg-primary text-white border-primary shadow-md' : 'text-secondary border-border hover:border-main'}`}><Icons.Globe className="w-4 h-4" />Crawl</button>
-                                <button onClick={() => setMode('github')} className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all border ${mode === 'github' ? 'bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 text-white border-zinc-900 dark:border-zinc-100 shadow-md' : 'text-secondary border-border hover:border-main'}`}><Icons.GitHub className="w-4 h-4" />Repo</button>
+                            <div className="flex justify-center mb-8">
+                              <div className="relative inline-flex gap-1 p-1 bg-surface-hover border border-border rounded-2xl">
+                                <button onClick={() => setMode('search')} className={`relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'search' ? 'text-white' : 'text-secondary hover:text-main'}`}><Icons.Search className="w-4 h-4" />Search</button>
+                                <button onClick={() => setMode('crawl')} className={`relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'crawl' ? 'text-white' : 'text-secondary hover:text-main'}`}><Icons.Globe className="w-4 h-4" />Crawl</button>
+                                <button onClick={() => setMode('github')} className={`relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all active:scale-[0.97] ${mode === 'github' ? 'text-white dark:text-zinc-900' : 'text-secondary hover:text-main'}`}><Icons.GitHub className="w-4 h-4" />Repo</button>
+                                {/* Sliding indicator */}
+                                <div
+                                  className={`absolute top-1 bottom-1 rounded-xl shadow-md transition-all duration-300 ease-out ${
+                                    mode === 'github' ? 'bg-zinc-900 dark:bg-zinc-100' : 'bg-primary'
+                                  }`}
+                                  style={{
+                                    left: mode === 'search' ? '4px' : mode === 'crawl' ? 'calc(33.33% + 2px)' : 'calc(66.66% + 0px)',
+                                    width: 'calc(33.33% - 4px)',
+                                  }}
+                                />
+                              </div>
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-4">
-                              <div className="relative">
+                              <div className={`relative ${inputShake ? 'animate-shake' : ''}`}>
                                   <input
                                     type="text"
                                     value={inputValue}
-                                    onChange={(e) => setInputValue(e.target.value)}
+                                    onChange={(e) => { setInputValue(e.target.value); if (inputError) { setInputError(false); setInputErrorMsg(''); } }}
                                     placeholder={mode === 'github' ? "Repository URL..." : mode === 'search' ? "Framework or library name..." : "Documentation root URL..."}
-                                    className={`w-full bg-background border rounded-2xl py-4 pl-12 pr-40 text-main focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all text-base ${inputError ? 'border-red-500' : 'border-border focus:border-primary'}`}
+                                    className={`w-full bg-background border rounded-2xl py-4 pl-12 pr-40 text-main focus:outline-none focus:ring-4 transition-all text-base ${inputError ? 'border-red-500 ring-2 ring-red-500/20 focus:ring-red-500/20' : 'border-border focus:border-primary focus:ring-primary/20'}`}
                                     aria-label="Documentation source"
                                   />
                                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary">
@@ -1125,11 +1166,17 @@ Keyboard Shortcuts:
                                     >
                                         <Icons.Plus className="w-4 h-4" />
                                     </button>
-                                    <button type="submit" disabled={!inputValue.trim()} className="bg-primary text-white px-6 py-2 rounded-xl text-sm font-bold hover:bg-primary-hover transition-all shadow-lg shadow-primary/20 disabled:opacity-50">
+                                    <button type="submit" disabled={!inputValue.trim()} className="bg-primary text-white px-6 py-2 rounded-xl text-sm font-bold hover:bg-primary-hover transition-all shadow-lg shadow-primary/20 disabled:opacity-50 active:scale-[0.97]">
                                       Synthesize
                                     </button>
                                   </div>
                               </div>
+                              {inputErrorMsg && (
+                                <div className="flex items-center gap-2 px-2 animate-slideUp">
+                                  <Icons.AlertTriangle className="w-3.5 h-3.5 text-red-500 shrink-0" />
+                                  <span className="text-xs text-red-500 font-medium">{inputErrorMsg}</span>
+                                </div>
+                              )}
 
                               {/* Streaming Toggle */}
                               <div className="flex justify-center">
@@ -1239,7 +1286,7 @@ Keyboard Shortcuts:
                               }))}
                             />
                           </div>
-                          <aside className="w-full lg:w-72 flex flex-col gap-6 overflow-y-auto lg:h-full pb-10 shrink-0">
+                          <aside className="w-full lg:w-72 flex flex-col gap-6 overflow-y-auto lg:h-full lg:sticky lg:top-0 pb-10 shrink-0">
                             {/* Real-time Presence */}
                             {presence.allPresence.length > 0 && (
                               <div className="bg-surface border border-border rounded-2xl p-4 shadow-sm">
@@ -1270,8 +1317,9 @@ Keyboard Shortcuts:
                                     <ul className="space-y-2">
                                     {currentDoc.sources.map((source: any, i: number) => (
                                         <li key={i}>
-                                        <a href={source.url} target="_blank" rel="noreferrer" className="block p-3 rounded-xl bg-background border border-border text-[11px] font-bold text-primary hover:border-primary/60 transition-all truncate">
-                                            {source.title}
+                                        <a href={source.url} target="_blank" rel="noreferrer" className="flex items-center justify-between gap-2 p-3 rounded-xl bg-background border border-border text-[11px] font-bold text-primary hover:border-primary/60 hover:bg-surface-hover transition-all group">
+                                            <span className="truncate">{source.title}</span>
+                                            <Icons.ArrowUpToLine className="w-3 h-3 text-secondary opacity-0 group-hover:opacity-100 transition-opacity rotate-90 shrink-0" />
                                         </a>
                                         </li>
                                     ))}
@@ -1286,7 +1334,7 @@ Keyboard Shortcuts:
                                 </p>
 
                                 <div className="space-y-2">
-                                  <button onClick={() => setCurrentDocId(null)} className="w-full py-2.5 bg-background hover:bg-surface-hover border border-border rounded-xl text-xs font-bold text-main transition-all flex items-center justify-center gap-2 shadow-sm">
+                                  <button onClick={() => setCurrentDocId(null)} className="w-full py-2.5 bg-primary hover:bg-primary-hover text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-md active:scale-[0.97]">
                                       <Icons.Plus className="w-3.5 h-3.5" />
                                       New Context
                                   </button>
@@ -1294,15 +1342,15 @@ Keyboard Shortcuts:
                                   <div className="p-3 bg-surface/50 border border-border rounded-xl">
                                     <h4 className="text-[9px] font-bold text-secondary uppercase tracking-widest mb-2">Quick Reference</h4>
                                     <div className="space-y-1">
-                                      <div className="flex justify-between items-center text-[10px]">
+                                      <div className="flex justify-between items-center text-[10px] px-2 py-1.5 -mx-2 rounded-lg hover:bg-surface-hover transition-colors">
                                         <span className="text-secondary font-medium">Refresh</span>
                                         <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-[8px] font-mono text-main font-bold">⌘R</kbd>
                                       </div>
-                                      <div className="flex justify-between items-center text-[10px]">
+                                      <div className="flex justify-between items-center text-[10px] px-2 py-1.5 -mx-2 rounded-lg hover:bg-surface-hover transition-colors">
                                         <span className="text-secondary font-medium">Copy All</span>
                                         <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-[8px] font-mono text-main font-bold">⌘C</kbd>
                                       </div>
-                                      <div className="flex justify-between items-center text-[10px]">
+                                      <div className="flex justify-between items-center text-[10px] px-2 py-1.5 -mx-2 rounded-lg hover:bg-surface-hover transition-colors">
                                         <span className="text-secondary font-medium">Delete</span>
                                         <kbd className="px-1.5 py-0.5 bg-background border border-border rounded text-[8px] font-mono text-main font-bold">⌘D</kbd>
                                       </div>

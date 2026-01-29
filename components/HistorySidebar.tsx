@@ -327,7 +327,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
           <div className="p-4 space-y-1">
              <button 
               onClick={onGoHome}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-main hover:bg-primary/10 hover:text-primary transition-all group"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-main hover:bg-primary/10 hover:text-primary transition-all group active:scale-[0.97]"
             >
               <Icons.Plus className="w-4 h-4 group-hover:rotate-90 transition-transform" />
               New Synthesis
@@ -368,6 +368,13 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
                   <span className="ml-auto text-[10px] opacity-60 bg-black/5 dark:bg-white/5 px-1.5 rounded">{history.length}</span>
                 </button>
                 
+                {projects.length === 0 && (
+                  <div className="px-3 py-4 text-center">
+                    <p className="text-[11px] text-secondary/60 leading-relaxed">
+                      Organize docs into projects for focused AI context.
+                    </p>
+                  </div>
+                )}
                 {projects.map((project, idx) => (
                   <div 
                       key={project.id} 
@@ -469,15 +476,31 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
           {/* History Section */}
           <div className="p-4">
             {!hasHistory ? (
-                <div className="text-secondary text-center text-sm mt-10 opacity-60">
-                <div className="flex justify-center mb-2">
-                    <Icons.History className="w-8 h-8 opacity-20" />
-                </div>
-                No documents yet.
+                <div className="flex flex-col items-center text-center mt-8 px-4">
+                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
+                    <Icons.FileText className="w-7 h-7 text-primary/60" />
+                  </div>
+                  <h4 className="text-sm font-bold text-main mb-1">No documents yet</h4>
+                  <p className="text-[11px] text-secondary leading-relaxed mb-4">
+                    Synthesize your first document to start building your AI knowledge base.
+                  </p>
+                  <button
+                    onClick={onGoHome}
+                    className="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl text-xs font-bold transition-all active:scale-[0.97]"
+                  >
+                    <Icons.Plus className="w-3.5 h-3.5" />
+                    New Synthesis
+                  </button>
                 </div>
             ) : !hasFilteredResults ? (
-                <div className="text-secondary text-center text-sm mt-10 opacity-60">
-                    No matches found.
+                <div className="flex flex-col items-center text-center mt-8 px-4">
+                  <div className="w-12 h-12 bg-surface-hover rounded-xl flex items-center justify-center mb-3">
+                    <Icons.Search className="w-6 h-6 text-secondary/40" />
+                  </div>
+                  <h4 className="text-sm font-bold text-main mb-1">No matches found</h4>
+                  <p className="text-[11px] text-secondary leading-relaxed">
+                    Try adjusting your search or filters.
+                  </p>
                 </div>
             ) : (
                 Object.entries(groupedHistory).map(([label, docs]) => {
@@ -487,9 +510,10 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
                         <div key={label} className="mb-6">
                             <h3 className="text-[10px] font-bold text-secondary uppercase tracking-widest mb-3 ml-1">{label}</h3>
                             <div className="space-y-1.5">
-                                {docs.map((doc) => (
-                                    <div 
+                                {docs.map((doc, docIdx) => (
+                                    <div
                                         key={doc.id}
+                                        style={{ animationDelay: `${docIdx * 30}ms` }}
                                         draggable
                                         onDragStart={(e) => handleDocDragStart(e, doc.id)}
                                         onDragEnd={handleDragEnd}
@@ -497,7 +521,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
                                             onSelectDoc(doc);
                                             if (window.innerWidth < 1024) onClose();
                                         }}
-                                        className={`group relative p-3 rounded-lg bg-surface-hover hover:bg-black/5 dark:hover:bg-white/10 cursor-grab active:cursor-grabbing border border-transparent hover:border-border transition-all ${draggingItem?.id === doc.id ? 'opacity-30 border-primary' : ''}`}
+                                        className={`group relative p-3 rounded-lg bg-surface-hover hover:bg-black/5 dark:hover:bg-white/10 cursor-grab active:cursor-grabbing border border-transparent hover:border-border transition-all hover:-translate-y-px hover:shadow-sm animate-slideUp ${draggingItem?.id === doc.id ? 'opacity-30 border-primary' : ''}`}
                                     >
                                         <div className="flex items-center justify-between gap-2">
                                           <h3 

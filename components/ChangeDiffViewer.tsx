@@ -129,7 +129,7 @@ export default function ChangeDiffViewer({
     if (score >= 70) return "text-red-500 bg-red-100 dark:bg-red-900/30";
     if (score >= 40) return "text-orange-500 bg-orange-100 dark:bg-orange-900/30";
     if (score >= 20) return "text-yellow-500 bg-yellow-100 dark:bg-yellow-900/30";
-    return "text-gray-500 bg-gray-100 dark:bg-gray-700";
+    return "text-gray-500 bg-gray-100 dark:bg-surface-hover";
   };
 
   const getChangeTypeInfo = (changeType: string) => {
@@ -171,8 +171,8 @@ export default function ChangeDiffViewer({
   if (!alert) {
     return (
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-md" onClick={onClose} />
-        <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md" onClick={onClose} />
+        <div className="relative bg-surface rounded-2xl p-8 flex items-center justify-center">
           <Icons.Loader className="w-8 h-8 text-gray-400 animate-spin" />
         </div>
       </div>
@@ -184,17 +184,17 @@ export default function ChangeDiffViewer({
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-md animate-fadeIn"
+        className="absolute inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-md animate-fadeIn"
         onClick={onClose}
       />
 
-      <div className="relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-fadeIn">
+      <div className="relative bg-surface border border-border rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden animate-fadeIn">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/30">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-gray-50 dark:bg-surface-hover/30">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Icons.Diff className="w-5 h-5 text-orange-500" />
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+              <h2 className="text-lg font-bold text-main">
                 Source Change Detected
               </h2>
             </div>
@@ -226,18 +226,18 @@ export default function ChangeDiffViewer({
         </div>
 
         {/* Alert info */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+        <div className="p-4 border-b border-border bg-surface">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+              <p className="text-xs font-medium text-secondary uppercase tracking-wider mb-1">
                 Document
               </p>
-              <p className="text-sm font-medium text-gray-900 dark:text-white">
+              <p className="text-sm font-medium text-main">
                 {alert.documentTopic}
               </p>
             </div>
             <div>
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+              <p className="text-xs font-medium text-secondary uppercase tracking-wider mb-1">
                 Source
               </p>
               <a
@@ -250,18 +250,18 @@ export default function ChangeDiffViewer({
               </a>
             </div>
             <div>
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+              <p className="text-xs font-medium text-secondary uppercase tracking-wider mb-1">
                 Detected At
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-secondary">
                 {new Date(alert.createdAt).toLocaleString()}
               </p>
             </div>
             <div>
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+              <p className="text-xs font-medium text-secondary uppercase tracking-wider mb-1">
                 Status
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-300 capitalize">
+              <p className="text-sm text-secondary capitalize">
                 {alert.status}
               </p>
             </div>
@@ -269,7 +269,7 @@ export default function ChangeDiffViewer({
         </div>
 
         {/* Diff Content */}
-        <div className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-900">
+        <div className="flex-1 overflow-auto bg-gray-50 dark:bg-background">
           <div className="font-mono text-xs">
             {diffLines.map((line, i) => (
               <div
@@ -281,12 +281,12 @@ export default function ChangeDiffViewer({
                     ? "bg-red-100 dark:bg-red-900/30"
                     : line.type === "header"
                     ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-semibold justify-center py-2 border-y border-blue-100 dark:border-blue-800"
-                    : "bg-white dark:bg-gray-800"
+                    : "bg-surface"
                 }`}
               >
                 {line.type !== "header" && (
                   <>
-                    <div className="w-12 text-right pr-2 text-gray-400 select-none shrink-0 border-r border-gray-200 dark:border-gray-700 py-1">
+                    <div className="w-12 text-right pr-2 text-gray-400 select-none shrink-0 border-r border-border py-1">
                       {line.lineNumber || ""}
                     </div>
                     <div className="w-6 text-center select-none shrink-0 py-1">
@@ -299,7 +299,7 @@ export default function ChangeDiffViewer({
                     </div>
                   </>
                 )}
-                <pre className="flex-1 whitespace-pre-wrap break-all px-2 py-1 text-gray-700 dark:text-gray-300">
+                <pre className="flex-1 whitespace-pre-wrap break-all px-2 py-1 text-secondary">
                   {line.content}
                 </pre>
               </div>
@@ -307,11 +307,11 @@ export default function ChangeDiffViewer({
           </div>
 
           {/* Summary section */}
-          <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
+          <div className="p-4 border-t border-border bg-surface">
+            <h3 className="text-sm font-semibold text-main mb-2">
               Change Summary
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300">{alert.diffSummary}</p>
+            <p className="text-sm text-secondary">{alert.diffSummary}</p>
 
             {alert.diffDetails && (
               <div className="mt-3 flex items-center gap-4">
@@ -332,8 +332,8 @@ export default function ChangeDiffViewer({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/30 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+        <div className="p-4 border-t border-border bg-gray-50 dark:bg-surface-hover/30 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-xs text-secondary">
             <span className="flex items-center gap-1">
               <span className="w-3 h-3 bg-green-500/20 rounded" /> Added
             </span>
@@ -346,7 +346,7 @@ export default function ChangeDiffViewer({
             {alert.status === "pending" && (
               <button
                 onClick={handleMarkAsRead}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-secondary hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
               >
                 <Icons.Eye className="w-4 h-4" />
                 Mark as Read

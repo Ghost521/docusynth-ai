@@ -158,7 +158,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
 
   return (
     <div
-      className={`min-h-screen ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}
+      className={`min-h-screen ${isDark ? 'bg-background text-white' : 'bg-white text-gray-900'}`}
       style={{ fontFamily: branding.fontFamily }}
     >
       {/* Custom header HTML */}
@@ -179,7 +179,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
-              className="lg:hidden p-2 -ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="lg:hidden p-2 -ml-2 rounded-lg hover:bg-surface-hover"
             >
               <Icons.Menu className="w-5 h-5" />
             </button>
@@ -229,7 +229,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             {theme === 'system' && (
               <button
                 onClick={() => setIsDark(!isDark)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="p-2 rounded-lg hover:bg-surface-hover transition-colors"
               >
                 {isDark ? (
                   <Icons.Sun className="w-5 h-5" />
@@ -260,7 +260,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
       {/* Search Modal */}
       {showSearch && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] bg-black/40 dark:bg-black/60 backdrop-blur-sm"
           onClick={() => setShowSearch(false)}
         >
           <div
@@ -325,7 +325,7 @@ const PortalLayout: React.FC<PortalLayoutProps> = ({
             <span className="font-bold">{portalName}</span>
             <button
               onClick={() => setIsMobileSidebarOpen(false)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="p-2 rounded-lg hover:bg-surface-hover"
             >
               <Icons.X className="w-5 h-5" />
             </button>

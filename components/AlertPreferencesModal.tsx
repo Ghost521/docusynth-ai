@@ -84,19 +84,19 @@ export default function AlertPreferencesModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm">
+      <div className="bg-surface rounded-xl shadow-2xl w-full max-w-lg mx-4 max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
               <Icons.Bell className="w-5 h-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-lg font-semibold text-main">
                 Alert Preferences
               </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400 truncate max-w-xs">
+              <p className="text-sm text-secondary truncate max-w-xs">
                 {documentId
                   ? documentTopic || "Document settings"
                   : "Global default settings"}
@@ -105,7 +105,7 @@ export default function AlertPreferencesModal({
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-2 hover:bg-surface-hover rounded-lg transition-colors"
           >
             <Icons.X className="w-5 h-5 text-gray-500" />
           </button>
@@ -115,19 +115,19 @@ export default function AlertPreferencesModal({
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
           {/* Notification Channels */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+            <h3 className="text-sm font-semibold text-main mb-3">
               Notification Channels
             </h3>
             <div className="space-y-3">
               {/* In-app notifications */}
-              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer hover:bg-surface-hover">
                 <div className="flex items-center gap-3">
-                  <Icons.Bell className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                  <Icons.Bell className="w-5 h-5 text-secondary" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                    <p className="text-sm font-medium text-main">
                       In-app notifications
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-secondary">
                       Show alerts in the alerts panel
                     </p>
                   </div>
@@ -141,14 +141,14 @@ export default function AlertPreferencesModal({
               </label>
 
               {/* Email notifications */}
-              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer hover:bg-surface-hover">
                 <div className="flex items-center gap-3">
-                  <Icons.Mail className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                  <Icons.Mail className="w-5 h-5 text-secondary" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                    <p className="text-sm font-medium text-main">
                       Email notifications
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-secondary">
                       Send alerts to your email
                     </p>
                   </div>
@@ -162,15 +162,15 @@ export default function AlertPreferencesModal({
               </label>
 
               {/* Webhook notifications */}
-              <div className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+              <div className="p-3 bg-gray-50 dark:bg-surface-hover/50 rounded-lg">
                 <label className="flex items-center justify-between cursor-pointer">
                   <div className="flex items-center gap-3">
-                    <Icons.Webhook className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                    <Icons.Webhook className="w-5 h-5 text-secondary" />
                     <div>
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
+                      <p className="text-sm font-medium text-main">
                         Webhook notifications
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-secondary">
                         Send alerts to a webhook URL
                       </p>
                     </div>
@@ -188,20 +188,20 @@ export default function AlertPreferencesModal({
                     value={webhookUrl}
                     onChange={(e) => setWebhookUrl(e.target.value)}
                     placeholder="https://your-webhook-url.com/alerts"
-                    className="mt-3 w-full px-3 py-2 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="mt-3 w-full px-3 py-2 text-sm bg-surface border border-border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   />
                 )}
               </div>
 
               {/* Slack notifications */}
-              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer hover:bg-surface-hover">
                 <div className="flex items-center gap-3">
-                  <Icons.Slack className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                  <Icons.Slack className="w-5 h-5 text-secondary" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                    <p className="text-sm font-medium text-main">
                       Slack notifications
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-secondary">
                       Send alerts via Slack bot
                     </p>
                   </div>
@@ -215,14 +215,14 @@ export default function AlertPreferencesModal({
               </label>
 
               {/* Discord notifications */}
-              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+              <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer hover:bg-surface-hover">
                 <div className="flex items-center gap-3">
-                  <Icons.Discord className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                  <Icons.Discord className="w-5 h-5 text-secondary" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
+                    <p className="text-sm font-medium text-main">
                       Discord notifications
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-secondary">
                       Send alerts via Discord bot
                     </p>
                   </div>
@@ -239,13 +239,13 @@ export default function AlertPreferencesModal({
 
           {/* Check Frequency */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+            <h3 className="text-sm font-semibold text-main mb-3">
               Check Frequency
             </h3>
             <select
               value={checkFrequency}
               onChange={(e) => setCheckFrequency(e.target.value as CheckFrequency)}
-              className="w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-surface border border-border rounded-lg text-main focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             >
               {Object.entries(FREQUENCY_LABELS).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -253,7 +253,7 @@ export default function AlertPreferencesModal({
                 </option>
               ))}
             </select>
-            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+            <p className="mt-1 text-xs text-secondary">
               How often to check sources for changes
             </p>
           </div>
@@ -261,7 +261,7 @@ export default function AlertPreferencesModal({
           {/* Significance Threshold */}
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-sm font-semibold text-main">
                 Minimum Significance
               </h3>
               <span className="text-sm font-mono text-orange-600 dark:text-orange-400">
@@ -274,30 +274,30 @@ export default function AlertPreferencesModal({
               max="100"
               value={minSignificance}
               onChange={(e) => setMinSignificance(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
+              className="w-full h-2 bg-gray-200 dark:bg-surface-hover rounded-lg appearance-none cursor-pointer accent-orange-500"
             />
-            <div className="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex justify-between mt-1 text-xs text-secondary">
               <span>All changes</span>
               <span>Major only</span>
             </div>
-            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+            <p className="mt-2 text-xs text-secondary">
               Only alert for changes with significance above this threshold
             </p>
           </div>
 
           {/* Auto-regenerate */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+            <h3 className="text-sm font-semibold text-main mb-3">
               Automatic Actions
             </h3>
-            <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+            <label className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer hover:bg-surface-hover">
               <div className="flex items-center gap-3">
-                <Icons.Refresh className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                <Icons.Refresh className="w-5 h-5 text-secondary" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-sm font-medium text-main">
                     Auto-regenerate documents
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-secondary">
                     Automatically update documents when sources change
                   </p>
                 </div>
@@ -324,10 +324,10 @@ export default function AlertPreferencesModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-3 p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-end gap-3 p-4 border-t border-border">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="px-4 py-2 text-sm font-medium text-secondary hover:bg-surface-hover rounded-lg transition-colors"
           >
             Cancel
           </button>

@@ -273,14 +273,14 @@ export function SSOConfigModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
+      <div className="bg-surface rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-6 border-b border-border">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <h2 className="text-xl font-semibold text-main">
               {isEditing ? 'Edit SSO Configuration' : 'Configure Single Sign-On'}
             </h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <p className="text-sm text-secondary mt-1">
               Step {currentStepIndex + 1} of {steps.length}:{' '}
               {step === 'provider' && 'Select Provider'}
               {step === 'details' && 'Provider Details'}
@@ -291,7 +291,7 @@ export function SSOConfigModal({
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-surface-hover"
           >
             <Icons.X className="w-5 h-5" />
           </button>
@@ -308,7 +308,7 @@ export function SSOConfigModal({
                       ? 'bg-green-500 text-white'
                       : i === currentStepIndex
                       ? 'bg-blue-500 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400'
+                      : 'bg-gray-200 dark:bg-surface-hover text-secondary'
                   }`}
                 >
                   {i < currentStepIndex ? <Icons.Check className="w-4 h-4" /> : i + 1}
@@ -318,7 +318,7 @@ export function SSOConfigModal({
                     className={`flex-1 h-1 rounded ${
                       i < currentStepIndex
                         ? 'bg-green-500'
-                        : 'bg-gray-200 dark:bg-gray-700'
+                        : 'bg-gray-200 dark:bg-surface-hover'
                     }`}
                   />
                 )}
@@ -339,7 +339,7 @@ export function SSOConfigModal({
           {step === 'provider' && (
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-secondary mb-2">
                   Configuration Name
                 </label>
                 <input
@@ -347,12 +347,12 @@ export function SSOConfigModal({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g., Company Okta, Azure AD"
-                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                  className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                <label className="block text-sm font-medium text-secondary mb-3">
                   Provider Type
                 </label>
                 <div className="grid grid-cols-2 gap-4">
@@ -361,18 +361,18 @@ export function SSOConfigModal({
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       provider === 'oidc'
                         ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                        : 'border-border hover:border-gray-300 dark:hover:border-gray-600'
                     }`}
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        provider === 'oidc' ? 'bg-blue-500' : 'bg-gray-100 dark:bg-gray-700'
+                        provider === 'oidc' ? 'bg-blue-500' : 'bg-gray-100 dark:bg-surface-hover'
                       }`}>
                         <Icons.Key className={`w-5 h-5 ${provider === 'oidc' ? 'text-white' : 'text-gray-500'}`} />
                       </div>
-                      <span className="font-medium text-gray-900 dark:text-white">OIDC / OAuth 2.0</span>
+                      <span className="font-medium text-main">OIDC / OAuth 2.0</span>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-secondary">
                       OpenID Connect with PKCE support. Recommended for Okta, Auth0, Azure AD, Google.
                     </p>
                   </button>
@@ -382,18 +382,18 @@ export function SSOConfigModal({
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       provider === 'saml'
                         ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                        : 'border-border hover:border-gray-300 dark:hover:border-gray-600'
                     }`}
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        provider === 'saml' ? 'bg-blue-500' : 'bg-gray-100 dark:bg-gray-700'
+                        provider === 'saml' ? 'bg-blue-500' : 'bg-gray-100 dark:bg-surface-hover'
                       }`}>
                         <Icons.Shield className={`w-5 h-5 ${provider === 'saml' ? 'text-white' : 'text-gray-500'}`} />
                       </div>
-                      <span className="font-medium text-gray-900 dark:text-white">SAML 2.0</span>
+                      <span className="font-medium text-main">SAML 2.0</span>
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-secondary">
                       Security Assertion Markup Language. Traditional enterprise SSO standard.
                     </p>
                   </button>
@@ -415,13 +415,13 @@ export function SSOConfigModal({
                       onChange={(e) => setUseWellKnown(e.target.checked)}
                       className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
                     />
-                    <label htmlFor="useWellKnown" className="text-sm text-gray-700 dark:text-gray-300">
+                    <label htmlFor="useWellKnown" className="text-sm text-secondary">
                       Auto-configure from Issuer URL (recommended)
                     </label>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Client ID <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -429,12 +429,12 @@ export function SSOConfigModal({
                       value={oidcClientId}
                       onChange={(e) => setOidcClientId(e.target.value)}
                       placeholder="your-client-id"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Client Secret {!isEditing && <span className="text-red-500">*</span>}
                     </label>
                     <input
@@ -442,13 +442,13 @@ export function SSOConfigModal({
                       value={oidcClientSecret}
                       onChange={(e) => setOidcClientSecret(e.target.value)}
                       placeholder={isEditing ? '(unchanged)' : 'your-client-secret'}
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
                   </div>
 
                   {useWellKnown ? (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-secondary mb-2">
                         Issuer URL <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -456,16 +456,16 @@ export function SSOConfigModal({
                         value={oidcIssuer}
                         onChange={(e) => setOidcIssuer(e.target.value)}
                         placeholder="https://your-tenant.okta.com"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                        className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                       />
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="text-xs text-secondary mt-1">
                         We'll auto-discover endpoints from /.well-known/openid-configuration
                       </p>
                     </div>
                   ) : (
                     <>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <label className="block text-sm font-medium text-secondary mb-2">
                           Authorization URL <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -473,12 +473,12 @@ export function SSOConfigModal({
                           value={oidcAuthUrl}
                           onChange={(e) => setOidcAuthUrl(e.target.value)}
                           placeholder="https://..."
-                          className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                          className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <label className="block text-sm font-medium text-secondary mb-2">
                           Token URL <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -486,12 +486,12 @@ export function SSOConfigModal({
                           value={oidcTokenUrl}
                           onChange={(e) => setOidcTokenUrl(e.target.value)}
                           placeholder="https://..."
-                          className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                          className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <label className="block text-sm font-medium text-secondary mb-2">
                           UserInfo URL (optional)
                         </label>
                         <input
@@ -499,14 +499,14 @@ export function SSOConfigModal({
                           value={oidcUserInfoUrl}
                           onChange={(e) => setOidcUserInfoUrl(e.target.value)}
                           placeholder="https://..."
-                          className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                          className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                         />
                       </div>
                     </>
                   )}
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Scopes
                     </label>
                     <input
@@ -514,9 +514,9 @@ export function SSOConfigModal({
                       value={oidcScopes}
                       onChange={(e) => setOidcScopes(e.target.value)}
                       placeholder="openid email profile"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-xs text-secondary mt-1">
                       Space-separated list of scopes to request
                     </p>
                   </div>
@@ -524,29 +524,29 @@ export function SSOConfigModal({
               ) : (
                 <>
                   {/* SAML SP Metadata */}
-                  <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                    <h4 className="font-medium text-gray-900 dark:text-white mb-3">
+                  <div className="p-4 bg-gray-50 dark:bg-surface-hover/50 rounded-lg">
+                    <h4 className="font-medium text-main mb-3">
                       Service Provider Information
                     </h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                    <p className="text-sm text-secondary mb-3">
                       Configure your Identity Provider with these values:
                     </p>
                     <div className="space-y-2 text-sm">
                       <div className="flex items-start justify-between gap-4">
-                        <span className="text-gray-500 dark:text-gray-400">Entity ID:</span>
-                        <code className="text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs break-all">
+                        <span className="text-secondary">Entity ID:</span>
+                        <code className="text-main bg-gray-100 dark:bg-surface-hover px-2 py-1 rounded text-xs break-all">
                           {spMetadata?.entityId || 'Loading...'}
                         </code>
                       </div>
                       <div className="flex items-start justify-between gap-4">
-                        <span className="text-gray-500 dark:text-gray-400">ACS URL:</span>
-                        <code className="text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs break-all">
+                        <span className="text-secondary">ACS URL:</span>
+                        <code className="text-main bg-gray-100 dark:bg-surface-hover px-2 py-1 rounded text-xs break-all">
                           {spMetadata?.acsUrl || 'Loading...'}
                         </code>
                       </div>
                       <div className="flex items-start justify-between gap-4">
-                        <span className="text-gray-500 dark:text-gray-400">SLO URL:</span>
-                        <code className="text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs break-all">
+                        <span className="text-secondary">SLO URL:</span>
+                        <code className="text-main bg-gray-100 dark:bg-surface-hover px-2 py-1 rounded text-xs break-all">
                           {spMetadata?.sloUrl || 'Loading...'}
                         </code>
                       </div>
@@ -554,7 +554,7 @@ export function SSOConfigModal({
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       IdP Entity ID <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -562,12 +562,12 @@ export function SSOConfigModal({
                       value={samlEntityId}
                       onChange={(e) => setSamlEntityId(e.target.value)}
                       placeholder="https://your-idp.com/entity-id"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       IdP SSO URL <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -575,12 +575,12 @@ export function SSOConfigModal({
                       value={samlSsoUrl}
                       onChange={(e) => setSamlSsoUrl(e.target.value)}
                       placeholder="https://your-idp.com/sso"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       IdP SLO URL (optional)
                     </label>
                     <input
@@ -588,12 +588,12 @@ export function SSOConfigModal({
                       value={samlSloUrl}
                       onChange={(e) => setSamlSloUrl(e.target.value)}
                       placeholder="https://your-idp.com/slo"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       IdP Certificate (X.509) {!isEditing && <span className="text-red-500">*</span>}
                     </label>
                     <textarea
@@ -601,10 +601,10 @@ export function SSOConfigModal({
                       onChange={(e) => setSamlCertificate(e.target.value)}
                       placeholder="-----BEGIN CERTIFICATE-----&#10;...&#10;-----END CERTIFICATE-----"
                       rows={6}
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white font-mono text-sm"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main font-mono text-sm"
                     />
                     {isEditing && !samlCertificate && (
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="text-xs text-secondary mt-1">
                         Leave empty to keep existing certificate
                       </p>
                     )}
@@ -618,19 +618,19 @@ export function SSOConfigModal({
                       onChange={(e) => setSamlSignRequests(e.target.checked)}
                       className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
                     />
-                    <label htmlFor="samlSignRequests" className="text-sm text-gray-700 dark:text-gray-300">
+                    <label htmlFor="samlSignRequests" className="text-sm text-secondary">
                       Sign authentication requests
                     </label>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       NameID Format
                     </label>
                     <select
                       value={samlNameIdFormat}
                       onChange={(e) => setSamlNameIdFormat(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     >
                       <option value="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">
                         Email Address
@@ -655,17 +655,17 @@ export function SSOConfigModal({
           {step === 'mapping' && (
             <div className="space-y-6">
               <div>
-                <h4 className="font-medium text-gray-900 dark:text-white mb-3">
+                <h4 className="font-medium text-main mb-3">
                   Attribute Mapping
                 </h4>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                <p className="text-sm text-secondary mb-4">
                   Map IdP attributes to DocuSynth user fields. Use dot notation for nested attributes.
                 </p>
 
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-secondary mb-2">
                         Email <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -673,11 +673,11 @@ export function SSOConfigModal({
                         value={attributeMapping.email}
                         onChange={(e) => setAttributeMapping({ ...attributeMapping, email: e.target.value })}
                         placeholder="email"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                        className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-secondary mb-2">
                         Display Name
                       </label>
                       <input
@@ -685,14 +685,14 @@ export function SSOConfigModal({
                         value={attributeMapping.name || ''}
                         onChange={(e) => setAttributeMapping({ ...attributeMapping, name: e.target.value })}
                         placeholder="name or displayName"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                        className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-secondary mb-2">
                         First Name
                       </label>
                       <input
@@ -700,11 +700,11 @@ export function SSOConfigModal({
                         value={attributeMapping.firstName || ''}
                         onChange={(e) => setAttributeMapping({ ...attributeMapping, firstName: e.target.value })}
                         placeholder="given_name"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                        className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-medium text-secondary mb-2">
                         Last Name
                       </label>
                       <input
@@ -712,13 +712,13 @@ export function SSOConfigModal({
                         value={attributeMapping.lastName || ''}
                         onChange={(e) => setAttributeMapping({ ...attributeMapping, lastName: e.target.value })}
                         placeholder="family_name"
-                        className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                        className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Groups (for role mapping)
                     </label>
                     <input
@@ -726,7 +726,7 @@ export function SSOConfigModal({
                       value={attributeMapping.groups || ''}
                       onChange={(e) => setAttributeMapping({ ...attributeMapping, groups: e.target.value })}
                       placeholder="groups or memberOf"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
                   </div>
                 </div>
@@ -735,7 +735,7 @@ export function SSOConfigModal({
               {/* Group to Role Mapping */}
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-medium text-gray-900 dark:text-white">
+                  <h4 className="font-medium text-main">
                     Group to Role Mapping
                   </h4>
                   <button
@@ -746,14 +746,14 @@ export function SSOConfigModal({
                     Add Mapping
                   </button>
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                <p className="text-sm text-secondary mb-4">
                   Automatically assign roles based on IdP group membership.
                 </p>
 
                 {groupRoleMappings.length === 0 ? (
-                  <div className="text-center py-6 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <div className="text-center py-6 bg-gray-50 dark:bg-surface-hover/50 rounded-lg">
                     <Icons.Users className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <p className="text-sm text-secondary">
                       No group mappings configured
                     </p>
                   </div>
@@ -766,13 +766,13 @@ export function SSOConfigModal({
                           value={mapping.idpGroup}
                           onChange={(e) => updateGroupMapping(index, 'idpGroup', e.target.value)}
                           placeholder="IdP Group Name"
-                          className="flex-1 px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                          className="flex-1 px-4 py-2 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                         />
                         <Icons.ArrowRight className="w-4 h-4 text-gray-400" />
                         <select
                           value={mapping.role}
                           onChange={(e) => updateGroupMapping(index, 'role', e.target.value)}
-                          className="px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                          className="px-4 py-2 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                         >
                           <option value="admin">Admin</option>
                           <option value="member">Member</option>
@@ -797,12 +797,12 @@ export function SSOConfigModal({
             <div className="space-y-6">
               {/* Domain Restrictions */}
               <div>
-                <h4 className="font-medium text-gray-900 dark:text-white mb-3">
+                <h4 className="font-medium text-main mb-3">
                   Domain Restrictions
                 </h4>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Allowed Domains
                     </label>
                     <input
@@ -810,14 +810,14 @@ export function SSOConfigModal({
                       value={allowedDomains}
                       onChange={(e) => setAllowedDomains(e.target.value)}
                       placeholder="company.com, subsidiary.com"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-xs text-secondary mt-1">
                       Comma-separated. Leave empty to allow all domains.
                     </p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Blocked Domains
                     </label>
                     <input
@@ -825,7 +825,7 @@ export function SSOConfigModal({
                       value={blockedDomains}
                       onChange={(e) => setBlockedDomains(e.target.value)}
                       placeholder="gmail.com, yahoo.com"
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     />
                   </div>
                 </div>
@@ -833,11 +833,11 @@ export function SSOConfigModal({
 
               {/* Enforcement Options */}
               <div>
-                <h4 className="font-medium text-gray-900 dark:text-white mb-3">
+                <h4 className="font-medium text-main mb-3">
                   Enforcement Options
                 </h4>
                 <div className="space-y-3">
-                  <label className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer">
+                  <label className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer">
                     <input
                       type="checkbox"
                       checked={enforceSSO}
@@ -845,17 +845,17 @@ export function SSOConfigModal({
                       className="mt-0.5 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
                     />
                     <div>
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <span className="font-medium text-main">
                         Enforce SSO for all members
                       </span>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="text-sm text-secondary mt-1">
                         Require workspace members to authenticate through this SSO provider.
                       </p>
                     </div>
                   </label>
 
                   {enforceSSO && (
-                    <label className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer ml-4">
+                    <label className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer ml-4">
                       <input
                         type="checkbox"
                         checked={allowBypassForOwner}
@@ -863,10 +863,10 @@ export function SSOConfigModal({
                         className="mt-0.5 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
                       />
                       <div>
-                        <span className="font-medium text-gray-900 dark:text-white">
+                        <span className="font-medium text-main">
                           Allow owner to bypass SSO
                         </span>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        <p className="text-sm text-secondary mt-1">
                           Workspace owner can still log in without SSO (emergency access).
                         </p>
                       </div>
@@ -877,10 +877,10 @@ export function SSOConfigModal({
 
               {/* JIT Provisioning */}
               <div>
-                <h4 className="font-medium text-gray-900 dark:text-white mb-3">
+                <h4 className="font-medium text-main mb-3">
                   Just-in-Time Provisioning
                 </h4>
-                <label className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg cursor-pointer">
+                <label className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-surface-hover/50 rounded-lg cursor-pointer">
                   <input
                     type="checkbox"
                     checked={jitProvisioning}
@@ -888,10 +888,10 @@ export function SSOConfigModal({
                     className="mt-0.5 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
                   />
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="font-medium text-main">
                       Enable JIT provisioning
                     </span>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-sm text-secondary mt-1">
                       Automatically create workspace membership when users authenticate through SSO.
                     </p>
                   </div>
@@ -899,13 +899,13 @@ export function SSOConfigModal({
 
                 {jitProvisioning && (
                   <div className="mt-4 ml-4">
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-secondary mb-2">
                       Default Role for JIT Users
                     </label>
                     <select
                       value={jitDefaultRole}
                       onChange={(e) => setJitDefaultRole(e.target.value as 'member' | 'viewer')}
-                      className="w-full px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2.5 bg-surface border border-border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-main"
                     >
                       <option value="member">Member</option>
                       <option value="viewer">Viewer</option>
@@ -927,57 +927,57 @@ export function SSOConfigModal({
               </div>
 
               <div className="space-y-4">
-                <h4 className="font-medium text-gray-900 dark:text-white">Configuration Summary</h4>
+                <h4 className="font-medium text-main">Configuration Summary</h4>
 
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-gray-500 dark:text-gray-400">Name:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white font-medium">{name}</span>
+                    <span className="text-secondary">Name:</span>
+                    <span className="ml-2 text-main font-medium">{name}</span>
                   </div>
                   <div>
-                    <span className="text-gray-500 dark:text-gray-400">Provider:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white font-medium uppercase">{provider}</span>
+                    <span className="text-secondary">Provider:</span>
+                    <span className="ml-2 text-main font-medium uppercase">{provider}</span>
                   </div>
 
                   {provider === 'oidc' ? (
                     <>
                       <div className="col-span-2">
-                        <span className="text-gray-500 dark:text-gray-400">Client ID:</span>
-                        <span className="ml-2 text-gray-900 dark:text-white font-mono">{oidcClientId}</span>
+                        <span className="text-secondary">Client ID:</span>
+                        <span className="ml-2 text-main font-mono">{oidcClientId}</span>
                       </div>
                       {oidcIssuer && (
                         <div className="col-span-2">
-                          <span className="text-gray-500 dark:text-gray-400">Issuer:</span>
-                          <span className="ml-2 text-gray-900 dark:text-white font-mono">{oidcIssuer}</span>
+                          <span className="text-secondary">Issuer:</span>
+                          <span className="ml-2 text-main font-mono">{oidcIssuer}</span>
                         </div>
                       )}
                     </>
                   ) : (
                     <>
                       <div className="col-span-2">
-                        <span className="text-gray-500 dark:text-gray-400">Entity ID:</span>
-                        <span className="ml-2 text-gray-900 dark:text-white font-mono break-all">{samlEntityId}</span>
+                        <span className="text-secondary">Entity ID:</span>
+                        <span className="ml-2 text-main font-mono break-all">{samlEntityId}</span>
                       </div>
                       <div className="col-span-2">
-                        <span className="text-gray-500 dark:text-gray-400">SSO URL:</span>
-                        <span className="ml-2 text-gray-900 dark:text-white font-mono break-all">{samlSsoUrl}</span>
+                        <span className="text-secondary">SSO URL:</span>
+                        <span className="ml-2 text-main font-mono break-all">{samlSsoUrl}</span>
                       </div>
                     </>
                   )}
 
                   <div>
-                    <span className="text-gray-500 dark:text-gray-400">Enforce SSO:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{enforceSSO ? 'Yes' : 'No'}</span>
+                    <span className="text-secondary">Enforce SSO:</span>
+                    <span className="ml-2 text-main">{enforceSSO ? 'Yes' : 'No'}</span>
                   </div>
                   <div>
-                    <span className="text-gray-500 dark:text-gray-400">JIT Provisioning:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{jitProvisioning ? 'Yes' : 'No'}</span>
+                    <span className="text-secondary">JIT Provisioning:</span>
+                    <span className="ml-2 text-main">{jitProvisioning ? 'Yes' : 'No'}</span>
                   </div>
 
                   {groupRoleMappings.length > 0 && (
                     <div className="col-span-2">
-                      <span className="text-gray-500 dark:text-gray-400">Group Mappings:</span>
-                      <span className="ml-2 text-gray-900 dark:text-white">{groupRoleMappings.length} configured</span>
+                      <span className="text-secondary">Group Mappings:</span>
+                      <span className="ml-2 text-main">{groupRoleMappings.length} configured</span>
                     </div>
                   )}
                 </div>
@@ -987,10 +987,10 @@ export function SSOConfigModal({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-6 border-t border-border">
           <button
             onClick={step === 'provider' ? onClose : handleBack}
-            className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="px-4 py-2 text-secondary hover:bg-surface-hover rounded-lg transition-colors"
             disabled={isSubmitting}
           >
             {step === 'provider' ? 'Cancel' : 'Back'}
